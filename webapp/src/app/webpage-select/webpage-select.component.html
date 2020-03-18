@@ -1,15 +1,15 @@
 <div class="container-fluid webpage-select-wrapper">
   <div class="row">
-    <h1>Enter web address</h1>
+    <h1>Enter text to analyze</h1>
   </div>
   <div class="row">
     <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <input type="text">
+        <input type="text" class="form-control" formControlName="text">
+      </div>
+      <div class="btn-wrapper">
+        <button type="submit" class="btn btn-primary">Check</button>
       </div>
     </form>
-    <div class="btn-wrapper">
-      <button type="submit" class="btn btn-primary">Check</button>
-    </div>
   </div>
 </div>
