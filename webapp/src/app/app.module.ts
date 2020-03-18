@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { WebsiteAnalyzerComponent } from './website-analyzer/website-analyzer.component';
+import { AlertsComponent } from './alerts/alerts.component';
+import { AssistantComponent } from './assistant/assistant.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    WebsiteAnalyzerComponent,
+    AlertsComponent,
+    AssistantComponent
   ],
   imports: [
     BrowserModule,
@@ -21,4 +27,5 @@ import { HomeComponent } from './home/home.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
