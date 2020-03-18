@@ -9,7 +9,8 @@ import { Subscription } from 'rxjs';
 })
 export class WebsiteAnalyzerComponent implements OnInit, OnDestroy {
     textToAnalyze: string | undefined;
-    wordsToHighlight: string[] = ['Lorem'];
+    wordsToHighlight: string[];
+    wordsToHighlight$: Subscription;
     textToAnalyze$: Subscription;
 
   constructor(private readonly dataStorageService: DataStorageService) { }
@@ -18,10 +19,14 @@ export class WebsiteAnalyzerComponent implements OnInit, OnDestroy {
     this.textToAnalyze$ = this.dataStorageService.textToAnalyze.subscribe((text: string) => {
       this.textToAnalyze = text;
     });
+    this.wordsToHighlight$ = this.dataStorageService.wordsToHighlight.subscribe((words: string[]) => {
+      this.wordsToHighlight = words;
+    });
   }
 
   ngOnDestroy(): void {
     this.textToAnalyze$.unsubscribe();
+    this.wordsToHighlight$.unsubscribe();
   }
 
 }

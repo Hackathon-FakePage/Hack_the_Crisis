@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
   textToAnalyze = new Subject<string>();
+  wordsToHighlight = new BehaviorSubject<string[]>(['lorem']);
   constructor() { }
 
   saveText(text: string): void {

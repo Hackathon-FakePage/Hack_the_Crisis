@@ -17,8 +17,6 @@ export class WebpageSelectComponent implements OnInit {
 
   onSubmit(): void {
     this.dataStorageService.saveText(this.textForm.value.text);
-    console.log('initform');
-    console.log(this.textForm.value.text);
   }
 
   private initForm(): void {
