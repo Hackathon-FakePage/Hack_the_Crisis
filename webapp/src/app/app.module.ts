@@ -10,6 +10,7 @@ import { WebsiteAnalyzerComponent } from './website-analyzer/website-analyzer.co
 import { AlertsComponent } from './alerts/alerts.component';
 import { AssistantComponent } from './assistant/assistant.component';
 import { WebpageSelectComponent } from './webpage-select/webpage-select.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { WebpageSelectComponent } from './webpage-select/webpage-select.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

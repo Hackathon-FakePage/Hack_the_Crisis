@@ -1,1 +1,18 @@
-<p>alerts works!</p>
+<div class="container-fluid alerts-wrapper">
+  <div class="row">
+    <p>
+      <span class="number-of-alerts"> {{numberOfAlerts}}
+      </span>
+      All alerts
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div *ngFor="let alert of alerts">
+        <div class="alert-row">
+          <fa-icon [icon]="faCircle" size="xs"></fa-icon><div class="alert-word">{{ alert.alertWord }}</div> - <div class="alert-correction">{{ alert.correction }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

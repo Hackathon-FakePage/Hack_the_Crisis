@@ -1,0 +1,44 @@
+.alerts-wrapper {
+  .alert-row {
+    display: inline-flex;
+    padding: 13px;
+    margin: 8px 0;
+    background-color: white;
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0px 0px 58px -18px rgba(0, 0, 0, 0.2);
+
+    * {
+      padding: 0 10px;
+
+    }
+    .alert-correction {
+      color: #525154;
+    }
+  }
+
+  .alert-row::before {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .number-of-alerts {
+    background-color: rgba(0, 0, 0, 0.73);
+    color: white;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 7px;
+    margin-left: 30px;
+  }
+
+  fa-icon {
+    height: 5px!important;
+    color: rgb(255, 0, 52);
+  }
+}
