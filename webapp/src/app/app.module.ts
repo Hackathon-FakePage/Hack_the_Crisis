@@ -12,6 +12,7 @@ import { AssistantComponent } from './assistant/assistant.component';
 import { WebpageSelectComponent } from './webpage-select/webpage-select.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxHighlightWordsModule } from 'ngx-highlight-words';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgxHighlightWordsModule } from 'ngx-highlight-words';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgxHighlightWordsModule
+    NgxHighlightWordsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

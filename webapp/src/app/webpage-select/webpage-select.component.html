@@ -3,7 +3,7 @@
     <h1>Enter web address</h1>
   </div>
   <div class="row">
-    <form>
+    <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <input type="text">
       </div>

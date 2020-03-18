@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from '../data-storage/data-storage.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-webpage-select',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./webpage-select.component.scss']
 })
 export class WebpageSelectComponent implements OnInit {
-
-  constructor() { }
+  textForm: FormGroup;
+  constructor(private readonly dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  onSubmit(): void {
+    this.dataStorageService.saveText(this.textForm.value.text);
+  }
+
+  private initForm(): void {
+    this.textForm = new FormGroup({
+      text: new FormControl(null, [Validators.required])
+    });
   }
 
 }
