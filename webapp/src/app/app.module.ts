@@ -11,6 +11,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { AssistantComponent } from './assistant/assistant.component';
 import { WebpageSelectComponent } from './webpage-select/webpage-select.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxHighlightWordsModule } from 'ngx-highlight-words';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxHighlightWordsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
