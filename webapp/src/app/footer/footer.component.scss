@@ -4,7 +4,7 @@ footer {
   bottom: 0;
   width: 100%;
   overflow: hidden;
-  position: absolute;
+  flex-shrink: 0;
 
   a {
     color: #77b6ff;
