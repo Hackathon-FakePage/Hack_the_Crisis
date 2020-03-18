@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { WebsiteAnalyzerComponent } from './website-analyzer/website-analyzer.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AssistantComponent } from './assistant/assistant.component';
+import { WebpageSelectComponent } from './webpage-select/webpage-select.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AssistantComponent } from './assistant/assistant.component';
     HomeComponent,
     WebsiteAnalyzerComponent,
     AlertsComponent,
-    AssistantComponent
+    AssistantComponent,
+    WebpageSelectComponent
   ],
   imports: [
     BrowserModule,
