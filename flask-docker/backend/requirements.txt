@@ -1,0 +1,8 @@
+# Originally generated using pip freeze > requirements.txt.
+# Then removed all packages except for the ones listed below.
+
+# Flask==1.1.1
+# pandas==0.24.2
+
+flask
+flask_restful
