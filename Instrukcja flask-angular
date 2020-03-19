@@ -1,0 +1,47 @@
+#############################################################
+################ PODSTAWOWA KONFIGURACJA ####################
+#############################################################
+
+1) W projekcie stworzyć następujące foldery i plik app.py:
+
+fake-hub:
+|
+|--static
+|--templates
+|--app.py
+
+2) Stworzyć nowy projekt angular wpisując:
+
+$ ng new angular-flask
+
+3) Wejść do projektu:
+
+$ cd angular-flask
+
+4) Stworzyć nowy komponent:
+
+$ ng generate component person
+
+5) Zrobić build:
+
+$ ng build --base-href /static/
+
+6) Skopiować wszystkie pliki z rozszerzeniem .js, .js.map i .ico z "./angular-flask/dist/angular-flask" do folderu "./static".
+
+7) Skopiować index.html z folderu "./angular-flask/dist/angular-flask" do folderu "./templates"
+
+8) Uruchomić serwer:
+
+$ python3 app.py
+
+
+#############################################################
+#################### AUTOMATYZACJA ##########################
+#############################################################
+
+Po wprowadzeniu zmian można je wdrożyć uruchamiając:
+
+$ build-dev.py
+
+UWAGA: To tyllko skompiluje projekt i przeniesie pliki w odpowiednie miejsce.
+Żaby serwer działał trzeba mieć go uruchomionego osobno!
