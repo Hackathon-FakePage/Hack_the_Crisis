@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./backend:/code
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 4800:8000
