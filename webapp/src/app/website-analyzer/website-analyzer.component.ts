@@ -19,8 +19,8 @@ export class WebsiteAnalyzerComponent implements OnInit, OnDestroy {
     this.textToAnalyze$ = this.dataStorageService.textToAnalyze.subscribe((text: string) => {
       this.textToAnalyze = text;
     });
-    this.wordsToHighlight$ = this.dataStorageService.wordsToHighlight.subscribe((words: string[]) => {
-      this.wordsToHighlight = words;
+    this.wordsToHighlight$ = this.dataStorageService.wordsToHighlight.subscribe(data => {
+      this.wordsToHighlight = data;
     });
   }
 
