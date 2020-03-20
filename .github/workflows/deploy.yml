@@ -9,4 +9,4 @@ jobs:
       - name: Get repo
         uses: actions/checkout@v2
       - name: Up compose
-        run: docker-compose up -d --force-recreate
+        run: docker-compose up -d --force-recreate --build
