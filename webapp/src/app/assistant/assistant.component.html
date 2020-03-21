@@ -1,5 +1,6 @@
 <div class="assistant-wrapper">
-  <div class="assistand-header">
+  <div class="alert-assistant-wrapper">
+  <div class="alert-assistant-header">
     <h5>Alert assistant</h5>
   </div>
   <div class="informal-words-counter">
@@ -7,11 +8,23 @@
     <div class="progress">
       <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="flagWordsPercentage" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: flagWordsPercentage + '%'}"></div>
     </div>
-  </div>
-  <div class="overall-status-wrapper">
-    <h5>Overall status</h5>
     <div class="overall-status">
-      <fa-icon [icon]="icon"> size="xs</fa-icon><div>{{overallStatus}}</div>
+      <fa-icon [icon]="formalIcon"> size="xs</fa-icon><div>{{overallFormalCheck}}</div>
+    </div>
+  </div>
+  </div>
+  <div class="reliable-info-status-wrapper">
+    <div class="reliable-assistant-header">
+      <h5>Reliability assistant</h5>
+    </div>
+    <div class="reliable-info-counter">
+      <div>{{reliableSum}} / 6 Reliability score</div>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="reliablePercentage" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: reliablePercentage + '%'}"></div>
+      </div>
+      <div class="overall-status">
+        <fa-icon [icon]="reliabilityIcon" size="xs"></fa-icon><div>{{reliabilityStatus}}</div>
+      </div>
     </div>
   </div>
 </div>

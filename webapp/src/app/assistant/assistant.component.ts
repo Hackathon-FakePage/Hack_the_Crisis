@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DataStorageService } from '../data-storage/data-storage.service';
+import { DataStorageService, ReliableInfo } from '../data-storage/data-storage.service';
 import { Subscription } from 'rxjs';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCross, faQuestionCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-assistant',
@@ -14,8 +14,13 @@ export class AssistantComponent implements OnInit, OnDestroy {
   flagWordsPercentage: number | undefined;
   overallNumberOfWords$: Subscription;
   numberOfFlagWords$: Subscription;
-  icon;
-  overallStatus: string | undefined;
+  reliableInfo$: Subscription;
+  formalIcon;
+  overallFormalCheck: string | undefined;
+  reliableSum = 0;
+  reliabilityStatus = '';
+  reliabilityIcon;
+  reliablePercentage = 0;
 
   constructor(private readonly dataStorageService: DataStorageService) { }
 
@@ -28,7 +33,10 @@ export class AssistantComponent implements OnInit, OnDestroy {
       this.overallNumberOfWords = data;
       this.recalculatePercentageOfInformalWords();
     });
-    this.setOverallStatus();
+    this.reliableInfo$ = this.dataStorageService.reliableInfo.subscribe(data => {
+      this.calculateReliabilityStatus(data);
+    });
+    this.setOverallStatuses();
   }
 
   ngOnDestroy(): void {
@@ -42,8 +50,23 @@ export class AssistantComponent implements OnInit, OnDestroy {
     }
   }
 
-  private setOverallStatus(): void {
-    this.overallStatus = 'Mostly formal';
-    this.icon = faCheckCircle;
+  private setOverallStatuses(): void {
+    this.overallFormalCheck = 'Mostly formal';
+    this.formalIcon = faCheckCircle;
+  }
+
+  private calculateReliabilityStatus(reliableInfo: ReliableInfo): void {
+    this.reliableSum = parseInt(reliableInfo.isEmotional, 10) + parseInt(reliableInfo.isExpert, 10) + parseInt(reliableInfo.isReviewed, 10);
+    this.reliablePercentage = this.reliableSum / 6 * 100;
+    if (this.reliableSum < 3) {
+      this.reliabilityStatus = 'Not reliable source';
+      this.reliabilityIcon = faTimesCircle;
+    } else if (this.reliableSum >= 3 && this.reliableSum <= 4) {
+      this.reliabilityStatus = 'Moderately reliable source';
+      this.reliabilityIcon = faQuestionCircle;
+    } else {
+      this.reliabilityStatus = 'Reliable source';
+      this.reliabilityIcon = faCheckCircle;
+    }
   }
 }

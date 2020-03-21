@@ -25,9 +25,9 @@ export class ModalComponent implements OnInit {
 
   private initForm(): void {
     this.additionalInfo = new FormGroup({
-      isReviewed: new FormControl('2', [Validators.required]),
-      isEmotional: new FormControl('2', [Validators.required]),
-      isExpert: new FormControl('2', [Validators.required])
+      isReviewed: new FormControl('1', [Validators.required]),
+      isEmotional: new FormControl('1', [Validators.required]),
+      isExpert: new FormControl('1', [Validators.required])
     });
   }
 }

@@ -6,9 +6,9 @@ import { environment } from '../../environments/environment';
 import { tap } from 'rxjs/operators';
 
 export interface ReliableInfo {
-  isReviewed: number;
-  isEmotional: number;
-  isExpert: number;
+  isReviewed: string;
+  isEmotional: string;
+  isExpert: string;
 }
 
 @Injectable({
