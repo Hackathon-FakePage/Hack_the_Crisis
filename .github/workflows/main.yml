@@ -19,11 +19,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: npm ci and npm run build
-      run: |
-        cd webapp
-        npm install
-        npm run build
+    - name: Npm install
+      working-directory: ./webapp
+      run: npm install
+    - name: Npm build
+      working-directory: ./webapp
+      run: npm run build
 
   deploy:
     runs-on: self-hosted
