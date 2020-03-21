@@ -3,6 +3,7 @@ FROM node:12-alpine as builder
 WORKDIR /code
 
 COPY ./package.json /code
+COPY ./yarn.lock /code
 # COPY ./package-lock.json /code
 
 RUN npm install
