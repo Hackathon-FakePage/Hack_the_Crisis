@@ -5,7 +5,7 @@
   <div class="informal-words-counter">
     <div>{{numberOfFlagWords}} / {{overallNumberOfWords}} of words/phrases are informal</div>
     <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="{{flagWordsPercentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: flagWordsPercentage + '%'}"></div>
+      <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="flagWordsPercentage" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: flagWordsPercentage + '%'}"></div>
     </div>
   </div>
 </div>
