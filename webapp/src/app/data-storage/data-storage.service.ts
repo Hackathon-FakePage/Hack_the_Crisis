@@ -52,7 +52,7 @@ export class DataStorageService {
   }
 
   private fetchIndices(text: string): void {
-    this.httpClient.post<GetAlertIndicesDTO.Root>(environment.apiUrl, text).subscribe(data => {
+    this.httpClient.post<GetAlertIndicesDTO.Root>(environment.apiUrl, {input: text}).subscribe(data => {
       this.indicesToHighlight.next(data);
     });
   }
