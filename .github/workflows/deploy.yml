@@ -13,9 +13,9 @@ jobs:
       with:
         node-version: 12
     - name: Install dependencies
-      run: npm install
+      run: cd webapp && npm install
     - name: Build
-      run: npm run build
+      run: cd webapp && npm run build
     # - name: Build
     #   run: npm run build -- --prod
     # - name: Test
