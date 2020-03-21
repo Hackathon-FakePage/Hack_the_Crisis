@@ -28,7 +28,7 @@ export class DataStorageService {
 
   saveText(text: string): void {
     this.textToAnalyze.next(text);
-    this.fetchIndices();
+    this.fetchIndices(text);
   }
 
   saveNumberOfInformalWordsAndPhrases(numberToSave: number) {
@@ -51,10 +51,10 @@ export class DataStorageService {
     this.wasReliableDataSubmitted.next(submitted);
   }
 
-  private fetchIndices(): void {
-    this.httpClient.get<GetAlertIndicesDTO.Root>(environment.apiUrl).pipe(take(1)).pipe(tap(data => {
+  private fetchIndices(text: string): void {
+    this.httpClient.post<GetAlertIndicesDTO.Root>(environment.apiUrl, text).subscribe(data => {
       this.indicesToHighlight.next(data);
-    })).subscribe();
+    });
   }
 }
 
