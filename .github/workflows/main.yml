@@ -9,17 +9,17 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
     - name: Use Node.js 12
       uses: actions/setup-node@v1
       with:
         node-version: 12
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: npm install
       working-directory: ./webapp
       run: npm install
@@ -65,4 +65,4 @@ jobs:
       - name: Get repo
         uses: actions/checkout@v2
       - name: Up compose
-        run: docker-compose up -d --force-recreate --build
+        run: docker-compose up -d --no-recreate
