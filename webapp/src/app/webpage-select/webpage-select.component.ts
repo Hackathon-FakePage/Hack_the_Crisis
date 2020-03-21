@@ -17,7 +17,7 @@ export class WebpageSelectComponent implements OnInit {
 
   onSubmit(): void {
     this.dataStorageService.saveText(this.textForm.value.text);
-    this.dataStorageService.fetchIndices();
+    // this.dataStorageService.fetchIndices();
   }
 
   private initForm(): void {
