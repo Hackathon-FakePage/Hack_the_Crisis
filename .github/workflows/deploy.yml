@@ -8,21 +8,22 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v1
+    - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+            ${{ runner.os }}-node-
     - name: Use Node.js 12
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: Install dependencies
-      run: cd webapp && npm install
-    - name: Build
-      run: cd webapp && npm run build
-    # - name: Build
-    #   run: npm run build -- --prod
-    # - name: Test
-    #   run: npm test -- --configuration=ci
-    # - name: E2E
-    #   run: npm run e2e -- --configuration=ci
-
+    - name: npm ci and npm run build
+      run: |
+        cd webapp
+        npm install
+        npm run build
 
   deploy:
     runs-on: self-hosted
