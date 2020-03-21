@@ -1,3 +1,11 @@
 <div class="assistant-wrapper">
-  <p>assistant works!</p>
+  <div class="assistand-header">
+    <h5>Allert assistant</h5>
+  </div>
+  <div class="informal-words-counter">
+    <div>{{numberOfFlagWords}} / {{overallNumberOfWords}} of words/phrases are informal</div>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="{{flagWordsPercentage}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: flagWordsPercentage + '%'}"></div>
+    </div>
+  </div>
 </div>
