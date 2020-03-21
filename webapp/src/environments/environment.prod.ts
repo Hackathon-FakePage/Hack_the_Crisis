@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: ' https://fakepage.kkthx.pl/core/'
+  apiUrl: ' https://fakepage.kkthx.pl/api/core/'
 };

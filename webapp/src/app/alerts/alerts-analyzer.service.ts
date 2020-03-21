@@ -3,14 +3,16 @@ import { Alert } from './alerts.component';
 import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 import { DataStorageService } from '../data-storage/data-storage.service';
 import * as _ from 'lodash';
+import { WordCounterCalculatorService } from '../common/word-counter-calculator.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertsAnalyzerService {
-  dummyCorrection = 'Word is informal';
+  dummyCorrection = 'Word/phrase is informal';
 
-  constructor(private readonly dataStorageService: DataStorageService) {
+  constructor(private readonly dataStorageService: DataStorageService,
+              private readonly wordCounterCalculatorService: WordCounterCalculatorService) {
   }
 
   getAlerts(text: string, indices: GetAlertIndicesDTO.Root): Alert[] {
@@ -25,6 +27,7 @@ export class AlertsAnalyzerService {
       words.push(word);
     });
     this.dataStorageService.saveHighlightedWords(words);
+    this.saveInformalWordsData(text, words);
     return alerts;
   }
 
@@ -36,7 +39,7 @@ export class AlertsAnalyzerService {
       indexGroup.forEach(charIndex => {
         flagWord += text.charAt(charIndex);
       });
-      output.push(flagWord);
+      output.push(' ' + flagWord + ' ');
     }
     return output;
   }
@@ -55,5 +58,11 @@ export class AlertsAnalyzerService {
       indicesGrouped.push(tempArray);
     }
     return indicesGrouped;
+  }
+
+  private saveInformalWordsData(text: string, flagWords: string[]): void {
+    const overallNumberOfWords = this.wordCounterCalculatorService.getNumberOfWords(text);
+    this.dataStorageService.saveOverallNumberOfWords(overallNumberOfWords);
+    this.dataStorageService.saveNumberOfInformalWordsAndPhrases(flagWords.length);
   }
 }
