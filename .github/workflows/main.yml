@@ -65,4 +65,4 @@ jobs:
       - name: Get repo
         uses: actions/checkout@v2
       - name: Up compose
-        run: docker-compose up -d --no-recreate
+        run: docker-compose up -d --build
