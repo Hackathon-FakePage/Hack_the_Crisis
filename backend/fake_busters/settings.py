@@ -125,3 +125,6 @@ STATIC_ROOT = '/data/static'
 # STATICFILES_DIRS = [
 #     ('global', '/data/admin_static' ),
 # ]
+
+# djangi is served in subdirectory: /<server>/api
+FORCE_SCRIPT_NAME = '/api/'
