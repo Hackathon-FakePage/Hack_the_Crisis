@@ -1,7 +1,11 @@
 .home-wrapper {
-  padding-top: 10px;
+  padding: 10px 4%;
 
   .analyzer-wrapper {
     padding-top: 30px;
+
+    .analyzer-row {
+      padding-top: 40px;
+    }
   }
 }

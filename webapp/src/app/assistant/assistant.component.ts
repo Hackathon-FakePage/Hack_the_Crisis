@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataStorageService } from '../data-storage/data-storage.service';
 import { Subscription } from 'rxjs';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-assistant',
@@ -13,6 +14,8 @@ export class AssistantComponent implements OnInit, OnDestroy {
   flagWordsPercentage: number | undefined;
   overallNumberOfWords$: Subscription;
   numberOfFlagWords$: Subscription;
+  icon;
+  overallStatus: string | undefined;
 
   constructor(private readonly dataStorageService: DataStorageService) { }
 
@@ -25,6 +28,7 @@ export class AssistantComponent implements OnInit, OnDestroy {
       this.overallNumberOfWords = data;
       this.recalculatePercentageOfInformalWords();
     });
+    this.setOverallStatus();
   }
 
   ngOnDestroy(): void {
@@ -36,6 +40,10 @@ export class AssistantComponent implements OnInit, OnDestroy {
     if (this.numberOfFlagWords !== undefined && this.overallNumberOfWords !== undefined) {
       this.flagWordsPercentage = this.numberOfFlagWords / this.overallNumberOfWords * 100;
     }
-    console.log(this.flagWordsPercentage);
+  }
+
+  private setOverallStatus(): void {
+    this.overallStatus = 'Mostly formal';
+    this.icon = faCheckCircle;
   }
 }

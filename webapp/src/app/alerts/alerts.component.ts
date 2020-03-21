@@ -17,6 +17,8 @@ export class AlertsComponent implements OnInit {
   numberOfAlerts: number | undefined;
   textToAnalyze$: Subscription;
   alertIndices$: Subscription;
+  alertText: string | undefined;
+
   constructor(private readonly alertsAnalyzerService: AlertsAnalyzerService,
               private readonly dataStorageService: DataStorageService) { }
 
@@ -32,6 +34,7 @@ export class AlertsComponent implements OnInit {
   populateAlerts(textToAnalyze: string): void {
     this.alerts = this.alertsAnalyzerService.getAlerts(textToAnalyze, this.indices);
     this.numberOfAlerts = this.alerts.length;
+    this.alertText = this.numberOfAlerts !== 1 ? 'Alerts found' : 'Alert found';
   }
 }
 

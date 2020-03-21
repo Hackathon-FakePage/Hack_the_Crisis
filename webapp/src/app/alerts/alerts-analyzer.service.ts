@@ -9,7 +9,8 @@ import { WordCounterCalculatorService } from '../common/word-counter-calculator.
   providedIn: 'root'
 })
 export class AlertsAnalyzerService {
-  dummyCorrection = 'Word/phrase is informal';
+  dummyWordCorrection = 'Word is informal';
+  dummyPhraseCorrection = 'Phrase is informal';
 
   constructor(private readonly dataStorageService: DataStorageService,
               private readonly wordCounterCalculatorService: WordCounterCalculatorService) {
@@ -20,11 +21,12 @@ export class AlertsAnalyzerService {
     const words: string[] = [];
     const highlightedWords = this.getHighlightedWords(text, indices);
     highlightedWords.forEach(word => {
+      const safeWord = ' ' + word + ' ';
       alerts.push({
         alertWord: word,
-        correction: this.dummyCorrection
+        correction: this.getCorrection(word)
       });
-      words.push(word);
+      words.push(safeWord);
     });
     this.dataStorageService.saveHighlightedWords(words);
     this.saveInformalWordsData(text, words);
@@ -39,7 +41,7 @@ export class AlertsAnalyzerService {
       indexGroup.forEach(charIndex => {
         flagWord += text.charAt(charIndex);
       });
-      output.push(' ' + flagWord + ' ');
+      output.push(flagWord);
     }
     return output;
   }
@@ -64,5 +66,9 @@ export class AlertsAnalyzerService {
     const overallNumberOfWords = this.wordCounterCalculatorService.getNumberOfWords(text);
     this.dataStorageService.saveOverallNumberOfWords(overallNumberOfWords);
     this.dataStorageService.saveNumberOfInformalWordsAndPhrases(flagWords.length);
+  }
+
+  private getCorrection(word: string): string {
+    return word.split(' ').length > 1 ? this.dummyPhraseCorrection : this.dummyWordCorrection;
   }
 }

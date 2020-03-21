@@ -2,11 +2,17 @@
 @import './assets/styles/colours.scss';
 
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 html, body
 {
+  background-color: $fakeBackground!important;
   height: 100%;
   width: 100%;
+}
+
+.btn-primary {
+  background-color: $fakeBlueNew!important;
+  border: none!important;
 }

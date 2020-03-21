@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { WebsiteAnalyzerComponent } from './website-analyzer/website-analyzer.component';
 import { AlertsComponent } from './alerts/alerts.component';
@@ -19,7 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     HomeComponent,
     WebsiteAnalyzerComponent,
     AlertsComponent,

@@ -1,19 +1,17 @@
+@import '../../assets/styles/colours.scss';
+
 .alerts-wrapper {
   .alert-row {
+    color: $fakeBackground!important;
     display: inline-flex;
     padding: 13px;
-    margin: 8px 0;
-    background-color: white;
+    margin: 4px 0;
+    background-color: rgba($fakeBlue, 0.85);
     z-index: 1000;
     border-radius: 5px;
-    box-shadow: 0px 0px 58px -18px rgba(0, 0, 0, 0.2);
-
+    box-shadow: 0 2px 43px -4px rgba(0,0,0,.19);
     * {
       padding: 0 10px;
-
-    }
-    .alert-correction {
-      color: #525154;
     }
   }
 
@@ -26,7 +24,7 @@
   }
 
   .number-of-alerts {
-    background-color: rgba(0, 0, 0, 0.73);
+    background-color: rgba($fakeBlue, 0.85);
     color: white;
     height: 25px;
     width: 25px;
@@ -39,6 +37,6 @@
 
   fa-icon {
     height: 5px!important;
-    color: rgb(255, 0, 52);
+    color: $fakeBackground;
   }
 }

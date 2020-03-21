@@ -4,15 +4,17 @@
       <app-webpage-select></app-webpage-select>
     </div>
   </div>
-  <div *ngIf="shouldDisplayAnalyzingSection" class="row analyzer-wrapper">
-    <div class="col-sm-7">
-      <app-website-analyzer></app-website-analyzer>
-    </div>
-    <div class="col-sm-3">
-      <app-alerts></app-alerts>
-    </div>
-    <div class="col-sm-2">
-      <app-assistant></app-assistant>
+  <div *ngIf="shouldDisplayAnalyzingSection" class="analyzer-wrapper">
+    <div class="row analyzer-row">
+      <div class="col-sm-6">
+        <app-website-analyzer></app-website-analyzer>
+      </div>
+      <div class="col-sm-3">
+        <app-alerts></app-alerts>
+      </div>
+      <div class="col-sm-3">
+        <app-assistant></app-assistant>
+      </div>
     </div>
   </div>
 </div>

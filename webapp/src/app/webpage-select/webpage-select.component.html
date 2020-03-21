@@ -1,11 +1,11 @@
 <div class="container-fluid webpage-select-wrapper">
   <div class="row">
-    <h1>Enter text to analyze</h1>
+    <img src="../../assets/icons/FakePage_logo_new.png" alt="">
   </div>
   <div class="row">
     <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <input type="text" class="form-control" formControlName="text">
+        <input type="text" class="form-control" formControlName="text" placeholder="enter your text here">
       </div>
       <div class="btn-wrapper">
         <button type="submit" class="btn btn-primary">Analyze</button>

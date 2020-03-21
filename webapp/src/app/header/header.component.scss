@@ -1,0 +1,10 @@
+@import '../../assets/styles/colours.scss';
+.navbar {
+
+  img {
+    max-height: 55px;
+  }
+  .nav-link {
+    color: $fakeGrey;
+  }
+}
