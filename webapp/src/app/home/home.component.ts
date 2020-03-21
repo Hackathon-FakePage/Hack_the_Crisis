@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.textToAnalyze$.unsubscribe();
   }
 
+  getClass(): string {
+    return this.shouldDisplayAnalyzingSection ? '' : 'hide-content';
+  }
+
 }

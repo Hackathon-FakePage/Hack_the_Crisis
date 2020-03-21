@@ -4,7 +4,7 @@
       <app-webpage-select></app-webpage-select>
     </div>
   </div>
-  <div *ngIf="shouldDisplayAnalyzingSection" class="analyzer-wrapper">
+  <div [ngClass]="getClass()" class="analyzer-wrapper">
     <div class="row analyzer-row">
       <div class="col-xs-6 col-lg-8">
         <app-website-analyzer></app-website-analyzer>
