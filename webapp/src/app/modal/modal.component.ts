@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataStorageService } from '../data-storage/data-storage.service';
 
 @Component({
   selector: 'app-modal',
@@ -9,21 +10,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ModalComponent implements OnInit {
   additionalInfo: FormGroup;
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal,
+              private readonly dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  onSubmit(): void {
-    console.log(this.additionalInfo.value);
+  onSubmitForm(): void {
+    this.dataStorageService.setReliableDataSubmitted(true);
+    this.dataStorageService.saveReliableInfo(this.additionalInfo.value);
+    this.activeModal.close();
   }
 
   private initForm(): void {
     this.additionalInfo = new FormGroup({
-      isReviewed: new FormControl('I don\'t know', [Validators.required]),
-      isEmotional: new FormControl('I don\'t know', [Validators.required]),
-      isExpert: new FormControl('I don\'t know', [Validators.required])
+      isReviewed: new FormControl('2', [Validators.required]),
+      isEmotional: new FormControl('2', [Validators.required]),
+      isExpert: new FormControl('2', [Validators.required])
     });
   }
 }
