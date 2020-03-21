@@ -16,3 +16,5 @@ ENV PYTHONUNBUFFERED 1
 RUN pip3 install --upgrade pip && pip3 install -r /tmp/requirements.txt
 
 COPY . /code/
+
+RUN python /code/manage.py collectstatic --noinput 

@@ -1,5 +1,8 @@
 version: '3'
 
+volumes:
+    base-data:
+
 services:
   frontend:
     build:
@@ -18,7 +21,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./backend:/code
-      - /code/static
+      - base-data:/data
     command: ash -c "python manage.py runserver 0.0.0.0:8000"
     ports:
       - 4800:8000
