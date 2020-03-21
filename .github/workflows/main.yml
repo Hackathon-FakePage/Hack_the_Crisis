@@ -12,7 +12,7 @@ jobs:
     - name: Cache node modules
       uses: actions/cache@v1
       with:
-        path: ~/.cache/yarn
+        path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
@@ -20,12 +20,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: yarn install
+    - name: npm install
       working-directory: ./webapp
-      run: yarn install
-    - name: yarn build
+      run: npm install
+    - name: npm build
       working-directory: ./webapp
-      run: yarn run build:prod
+      run: npm run build:prod
 
 
   build-backend:
