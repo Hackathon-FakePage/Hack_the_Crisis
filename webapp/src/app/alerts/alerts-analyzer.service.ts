@@ -29,7 +29,6 @@ export class AlertsAnalyzerService {
   }
 
   private getHighlightedWords(text: string, indices: GetAlertIndicesDTO.Root): string[] {
-    // const indicesDeep: [number[]] = [];
     const output: string[] = [];
     const indicesGrouped: number[][] = this.getGroupedIndices(indices.indices);
     for (const indexGroup of indicesGrouped) {
