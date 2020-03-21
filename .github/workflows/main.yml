@@ -25,7 +25,7 @@ jobs:
       run: npm install
     - name: npm build
       working-directory: ./webapp
-      run: npm run build:prod
+      run: npm run build
 
 
   build-backend:

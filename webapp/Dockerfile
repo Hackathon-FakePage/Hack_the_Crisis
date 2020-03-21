@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . /code
 
-RUN npm run build:prod
+RUN npm run build
 
 
 # Build a small nginx image with static website
