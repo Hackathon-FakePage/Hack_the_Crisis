@@ -37,7 +37,6 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
 
   private updateAnalyzedText() {
     this.dataStorageService.saveText(this.textForm.value.text);
-    // this.dataStorageService.fetchIndices();
   }
 
   private initForm(): void {
