@@ -7,6 +7,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./webapp:/code
+      - ./static
     # command: ash -c "npm run start"
     ports:
       - 4801:80
@@ -17,7 +18,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./backend:/code
-      - /code/node_moduless
+      - /code/node_modules
     command: ash -c "python /code/manage.py collectstatic --noinput && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     ports:
       - 4800:8000
