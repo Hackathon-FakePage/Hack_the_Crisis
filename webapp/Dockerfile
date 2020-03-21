@@ -9,7 +9,7 @@ RUN yarn install
 
 COPY . /code
 
-RUN yarn run build
+RUN yarn run build:prod
 
 
 # Build a small nginx image with static website
