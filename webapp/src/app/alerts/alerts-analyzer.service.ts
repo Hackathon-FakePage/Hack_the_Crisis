@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Alert } from './alerts.component';
 import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 import { DataStorageService } from '../data-storage/data-storage.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -28,14 +29,32 @@ export class AlertsAnalyzerService {
   }
 
   private getHighlightedWords(text: string, indices: GetAlertIndicesDTO.Root): string[] {
-    let index = 0;
-    let word = '';
-    let indicesCopy = indices.indices;
-    // todo - enhance loop to get more than one word
-    while (indicesCopy[index] + 1 === indicesCopy[index + 1]) {
-      word += text.charAt(index++);
-      indicesCopy = indicesCopy.slice(1, indicesCopy.length - 1);
+    // const indicesDeep: [number[]] = [];
+    const output: string[] = [];
+    const indicesGrouped: number[][] = this.getGroupedIndices(indices.indices);
+    for (const indexGroup of indicesGrouped) {
+      let flagWord = '';
+      indexGroup.forEach(charIndex => {
+        flagWord += text.charAt(charIndex);
+      });
+      output.push(flagWord);
     }
-    return [word];
+    return output;
+  }
+
+  private getGroupedIndices(flatIndices: number[]) {
+    const indicesGrouped: number[][] = [];
+    while (flatIndices.length) {
+      const tempArray: number[] = [];
+      for (let i = 0; i < flatIndices.length; i++) {
+        tempArray.push(flatIndices[i]);
+        if (flatIndices[i + 1] !== flatIndices[i] + 1) {
+          break;
+        }
+      }
+      flatIndices = _.xor(flatIndices, tempArray);
+      indicesGrouped.push(tempArray);
+    }
+    return indicesGrouped;
   }
 }

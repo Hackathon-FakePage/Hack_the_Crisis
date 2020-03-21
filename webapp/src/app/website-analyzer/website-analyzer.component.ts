@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class WebsiteAnalyzerComponent implements OnInit, OnDestroy {
     textToAnalyze: string | undefined;
-    wordsToHighlight: string[];
+    wordsToHighlight: string[] = [];
     wordsToHighlight$: Subscription;
     textToAnalyze$: Subscription;
 
