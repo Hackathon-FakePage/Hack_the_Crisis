@@ -2,6 +2,7 @@ name: Docker-compose Actions Workflow - hackcrisis fakebusters website
 # This workflow is triggered on pushes to the repository.
 on: push
 
+
 jobs:
   build-frontend:
     # https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions#ubuntu-1804-lts
@@ -19,13 +20,40 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: npm ci and npm run build
+    - name: Npm install
+      working-directory: ./webapp
+      run: npm install
+    - name: Npm build
+      working-directory: ./webapp
+      run: npm run build
+
+
+  build-backend:
+    runs-on: ubuntu-18.04
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      working-directory: ./backend
       run: |
-        cd webapp
-        npm install
-        npm run build
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      working-directory: ./backend
+      run: |
+        python manage.py test
+
 
   deploy:
+    needs: [build-frontend, build-backend]
     runs-on: self-hosted
     steps:
       - name: Get repo
