@@ -1,0 +1,35 @@
+<div role="document" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Please provide additional information</h4>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="additionalInfo" (ngSubmit)="onSubmit()">
+        <h5>Was the article reviewed?</h5>
+        <div class="form-group">
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isReviewed" value="Yes"><label class="form-check-label">Yes</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isReviewed" value="No"><label class="form-check-label">No</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isReviewed" value="I don't know"><label class="form-check-label">I don't know</label></div>
+        </div>
+        <h5>Are strong emotional words or phrases used?</h5>
+        <div class="form-group">
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isEmotional" value="Yes"><label class="form-check-label">Yes</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isEmotional" value="No"><label class="form-check-label">No</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isEmotional" value="I don't know"><label class="form-check-label">I don't know</label></div>
+        </div>
+        <h5>Does the author possess expertise in their field?</h5>
+        <div class="form-group">
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isExpert" value="Yes"><label class="form-check-label">Yes</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isExpert" value="No"><label class="form-check-label">No</label></div>
+          <div class="form-check"><input class="form-check-input" type="radio" formControlName="isExpert" value="I don't know"><label class="form-check-label">I don't know</label></div>
+        </div>
+        <div class="btn-wrapper">
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss('Cross click')">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -8,7 +8,7 @@
         <input type="text" class="form-control" formControlName="text" placeholder="enter your text here">
       </div>
       <div class="btn-wrapper">
-        <button type="submit" class="btn btn-primary">Analyze</button>
+        <button type="submit" [disabled]="textForm.invalid" class="btn btn-primary">Analyze</button>
       </div>
     </form>
   </div>

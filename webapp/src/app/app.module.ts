@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxHighlightWordsModule } from 'ngx-highlight-words';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     WebsiteAnalyzerComponent,
     AlertsComponent,
     AssistantComponent,
-    WebpageSelectComponent
+    WebpageSelectComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

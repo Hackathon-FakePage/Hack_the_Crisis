@@ -1,0 +1,26 @@
+.modal-dialog {
+  .close:focus {
+    outline: none;
+  }
+  .modal-header, .modal-content {
+    border: none;
+  }
+
+  .modal-content {
+    padding: 0 1.5rem;
+  }
+
+  .form-check-input {
+    outline: none!important;
+  }
+
+  .form-check-label {
+    transform: translate(10px, 4.5px);
+    margin-bottom: 5px;
+  }
+
+  .btn-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+}

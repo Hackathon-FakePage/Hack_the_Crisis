@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataStorageService } from '../data-storage/data-storage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-webpage-select',
@@ -9,13 +11,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class WebpageSelectComponent implements OnInit {
   textForm: FormGroup;
-  constructor(private readonly dataStorageService: DataStorageService) { }
+  constructor(private readonly dataStorageService: DataStorageService,
+              private readonly modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
   onSubmit(): void {
+    this.modalService.open(ModalComponent);
     this.dataStorageService.saveText(this.textForm.value.text);
     // this.dataStorageService.fetchIndices();
   }
