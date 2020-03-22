@@ -28,4 +28,7 @@ class MainView(APIView):
         return Response(results)
 
     def options(self, request, *args, **kwargs):
-        return Response(status=200)
+        response = Response(status=200)
+        response['Access-Control-Allow-Origin'] = '*'
+        response['Access-Control-Allow-Headers'] = 'content-type'
+        return response
