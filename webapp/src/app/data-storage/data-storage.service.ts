@@ -59,7 +59,7 @@ export class DataStorageService {
   }
 
   saveIndices(indices: GetAlertIndicesDTO.Root) {
-    this.indicesToHighlight.next(indices);
+    this.indicesToHighlight.next({indices: [...indices.indices]});
   }
 }
 
