@@ -26,3 +26,6 @@ class MainView(APIView):
         results = find_words.find_informal_words(contents)
 
         return Response(results)
+
+    def options(self, request, *args, **kwargs):
+        return Response(status=200)
