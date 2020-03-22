@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,4 +135,5 @@ STATIC_ROOT = '/data/static'
 # ]
 
 # djangi is served in subdirectory: /<server>/api
-FORCE_SCRIPT_NAME = '/api/'
+if not DEBUG:
+    FORCE_SCRIPT_NAME = '/api/'
