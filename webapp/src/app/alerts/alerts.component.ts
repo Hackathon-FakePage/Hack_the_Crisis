@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { AlertsAnalyzerService } from './alerts-analyzer.service';
 import { DataStorageService } from '../data-storage/data-storage.service';
-import { Subscription } from 'rxjs';
+import { forkJoin, Observable, Subscription } from 'rxjs';
 import * as GetAlertIndices from '../common/dtos/get-alert-indices.dto';
 
 @Component({
@@ -13,26 +13,25 @@ import * as GetAlertIndices from '../common/dtos/get-alert-indices.dto';
 export class AlertsComponent implements OnInit {
   faCircle = faCircle;
   alerts: Alert[] = [];
-  indices: GetAlertIndices.Root;
   numberOfAlerts: number | undefined;
-  textToAnalyze$: Subscription;
-  alertIndices$: Subscription;
+  textToAnalyze$: Observable<string>;
+  alertIndices$: Observable<GetAlertIndices.Root>;
   alertText: string | undefined;
 
   constructor(private readonly alertsAnalyzerService: AlertsAnalyzerService,
               private readonly dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
-    this.alertIndices$ = this.dataStorageService.indicesToHighlight.subscribe(data => {
-      this.indices = data;
-    });
-    this.textToAnalyze$ = this.dataStorageService.textToAnalyze.subscribe((data: string) => {
-      this.populateAlerts(data);
+    this.alertIndices$ = this.dataStorageService.indicesToHighlight;
+    this.textToAnalyze$ = this.dataStorageService.textToAnalyze;
+    forkJoin([this.alertIndices$, this.textToAnalyze$]).subscribe(([indices, text]) => {
+      this.alertText = text;
+      this.populateAlerts(text, indices);
     });
   }
 
-  populateAlerts(textToAnalyze: string): void {
-    this.alerts = this.alertsAnalyzerService.getAlerts(textToAnalyze, this.indices);
+  populateAlerts(textToAnalyze: string, indices: GetAlertIndices.Root): void {
+    this.alerts = this.alertsAnalyzerService.getAlerts(textToAnalyze, indices);
     this.numberOfAlerts = this.alerts.length;
     this.alertText = this.numberOfAlerts !== 1 ? 'Alerts found' : 'Alert found';
   }
