@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataStorageService } from '../data-storage/data-storage.service';
-import { Subscription } from 'rxjs';
+import { combineLatest, forkJoin, Observable, Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-website-analyzer',
@@ -10,23 +11,26 @@ import { Subscription } from 'rxjs';
 export class WebsiteAnalyzerComponent implements OnInit, OnDestroy {
     textToAnalyze: string | undefined;
     wordsToHighlight: string[] = [];
-    wordsToHighlight$: Subscription;
-    textToAnalyze$: Subscription;
+    wordsToHighlight$: Observable<string[]>;
+    unsubscribe$: Subject<void> = new Subject<void>();
+    textToAnalyze$: Observable<string>;
 
   constructor(private readonly dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
-    this.textToAnalyze$ = this.dataStorageService.textToAnalyze.subscribe((text: string) => {
+    this.wordsToHighlight$ = this.dataStorageService.wordsToHighlight;
+    this.textToAnalyze$ = this.dataStorageService.textToAnalyze;
+    combineLatest([this.wordsToHighlight$, this.textToAnalyze$])
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(([words, text]) => {
       this.textToAnalyze = text;
-    });
-    this.wordsToHighlight$ = this.dataStorageService.wordsToHighlight.subscribe(data => {
-      this.wordsToHighlight = data;
+      this.wordsToHighlight = words;
     });
   }
 
   ngOnDestroy(): void {
-    this.textToAnalyze$.unsubscribe();
-    this.wordsToHighlight$.unsubscribe();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }
