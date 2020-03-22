@@ -64,7 +64,5 @@ jobs:
     steps:
       - name: Get repo
         uses: actions/checkout@v2
-      - name: Prune docker images
-        run: docker image prune -f
       - name: Up compose
         run: docker-compose -f docker-compose.prod.yml up -d --build --force-recreate
