@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -28,7 +28,6 @@ export class DataStorageService {
 
   saveText(text: string): void {
     this.textToAnalyze.next(text);
-    this.fetchIndices(text);
   }
 
   saveNumberOfInformalWordsAndPhrases(numberToSave: number) {
@@ -51,14 +50,16 @@ export class DataStorageService {
     this.wasReliableDataSubmitted.next(submitted);
   }
 
-  private fetchIndices(text: string): void {
-    this.httpClient.post<GetAlertIndicesDTO.Root>(environment.apiUrl, {input: text}, {
+  fetchIndices(text: string): Observable<GetAlertIndicesDTO.Root> {
+    return this.httpClient.post<GetAlertIndicesDTO.Root>(environment.apiUrl, {input: text}, {
       headers: {
       'Content-Type': 'application/json'
       }
-    }).subscribe(data => {
-      this.indicesToHighlight.next(data);
     });
+  }
+
+  saveIndices(indices: GetAlertIndicesDTO.Root) {
+    this.indicesToHighlight.next(indices);
   }
 }
 

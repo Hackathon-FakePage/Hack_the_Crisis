@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class WebpageSelectComponent implements OnInit, OnDestroy {
   textForm: FormGroup;
   wasReliableDataSubmitted$: Subscription;
-  wasReliableDataSubmitted = false;
+  fetchIndices$: Subscription;
 
   constructor(private readonly dataStorageService: DataStorageService,
               private readonly modalService: NgbModal) { }
@@ -29,6 +29,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.wasReliableDataSubmitted$.unsubscribe();
+    this.fetchIndices$.unsubscribe();
   }
 
   onSubmit(): void {
@@ -37,6 +38,9 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
 
   private updateAnalyzedText() {
     this.dataStorageService.saveText(this.textForm.value.text);
+    this.fetchIndices$ = this.dataStorageService.fetchIndices(this.textForm.value.text).subscribe(data => {
+      this.dataStorageService.saveIndices(data);
+    });
   }
 
   private initForm(): void {
