@@ -18,6 +18,8 @@ services:
     build:
       context: ./backend
       dockerfile: ./Dockerfile
+    environment:
+      - DEBUG=True
     volumes:
       - ./backend:/code
       - base-data:/data

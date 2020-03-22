@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
+    print('CORS_ORIGIN_ALLOW_ALL = True')
+else:
+    print('CORS_ORIGIN_ALLOW_ALL = False')
+
 
 # Application definition
 
