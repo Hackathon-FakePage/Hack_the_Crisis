@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataStorageService } from '../data-storage/data-storage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { Subscription } from 'rxjs';
 
@@ -11,9 +11,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./webpage-select.component.scss']
 })
 export class WebpageSelectComponent implements OnInit, OnDestroy {
-  textForm: FormGroup;
-  wasReliableDataSubmitted$: Subscription;
-  fetchIndices$: Subscription;
+  textForm: FormGroup | undefined;
+  wasReliableDataSubmitted$: Subscription | undefined;
+  fetchIndices$: Subscription | undefined;
+  modalRef: NgbModalRef | undefined;
 
   constructor(private readonly dataStorageService: DataStorageService,
               private readonly modalService: NgbModal) { }
@@ -33,7 +34,14 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.modalService.open(ModalComponent);
+    this.modalRef = this.modalService.open(ModalComponent);
+    this.modalRef.result.then(() => {
+      this.dataStorageService.setReliableDataSubmitted(true);
+    }, reason => {
+      if (reason !== 'Cancel') {
+        this.dataStorageService.setReliableDataSubmitted(true);
+      }
+    });
   }
 
   private updateAnalyzedText() {

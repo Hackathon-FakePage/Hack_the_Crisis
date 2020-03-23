@@ -1,3 +1,5 @@
+@import '../../assets/styles/colours.scss';
+
 .modal-dialog {
   .close:focus {
     outline: none;
@@ -8,7 +10,6 @@
 
   .modal-content {
     padding: 0 1.5rem;
-    //width: 550px;
   }
 
   .form-check-input {
@@ -23,5 +24,10 @@
   .btn-wrapper {
     display: flex;
     justify-content: center;
+  }
+
+  fa-icon:hover {
+    color: $fakeGrey;
+    cursor: pointer;
   }
 }

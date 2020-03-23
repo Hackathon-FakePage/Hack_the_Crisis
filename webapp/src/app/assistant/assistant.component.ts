@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataStorageService, ReliableInfo } from '../data-storage/data-storage.service';
 import { Subscription } from 'rxjs';
-import { faCheckCircle, faCross, faQuestionCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faQuestionCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-assistant',
@@ -17,7 +17,7 @@ export class AssistantComponent implements OnInit, OnDestroy {
   reliableInfo$: Subscription;
   formalIcon;
   overallFormalCheck: string | undefined;
-  reliableSum = 0;
+  reliableSum: number | undefined;
   reliabilityStatus = '';
   reliabilityIcon;
   reliablePercentage = 0;

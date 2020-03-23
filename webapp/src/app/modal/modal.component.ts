@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataStorageService } from '../data-storage/data-storage.service';
+import {faTimes, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +11,7 @@ import { DataStorageService } from '../data-storage/data-storage.service';
 })
 export class ModalComponent implements OnInit {
   additionalInfo: FormGroup;
+  faTimesCircle = faTimes;
   constructor(public activeModal: NgbActiveModal,
               private readonly dataStorageService: DataStorageService) { }
 
