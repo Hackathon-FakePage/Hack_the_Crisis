@@ -40,6 +40,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
     }, reason => {
       if (reason !== 'Cancel') {
         this.dataStorageService.setReliableDataSubmitted(true);
+        this.dataStorageService.reliableInfo.next(undefined);
       }
     });
   }
