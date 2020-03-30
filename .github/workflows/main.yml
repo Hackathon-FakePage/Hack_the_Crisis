@@ -70,7 +70,7 @@ jobs:
 
 
   deploy-frontend:
-    needs: [build-frontend]
+    needs: build-frontend
     runs-on: self-hosted
     steps:
       - name: Unpack
