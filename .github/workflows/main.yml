@@ -77,11 +77,12 @@ jobs:
         run: yes | zstd -d hack_the_crisis_frontend.tar.zst
       - name: Replace docker images
         run: |
+          docker rm hack_the_crisis_frontend --force
           docker rmi hack_the_crisis_frontend --force
           docker load -i hack_the_crisis_frontend.tar
       - name: Run image
         run: |
-          docker run -p 4801:80 -d hack_the_crisis_frontend
+          docker run -p 4801:80 -d --name hack_the_crisis_frontend hack_the_crisis_frontend
       - name: Cleanup
         run: |
           rm hack_the_crisis_frontend.*
