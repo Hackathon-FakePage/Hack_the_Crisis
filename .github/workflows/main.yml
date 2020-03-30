@@ -74,7 +74,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Unpack
-        run: zstd -d hack_the_crisis_frontend.tar.zst
+        run: yes | zstd -d hack_the_crisis_frontend.tar.zst
       - name: Replace docker images
         run: |
           /usr/bin/docker rmi hack_the_crisis_frontend --force
