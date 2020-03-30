@@ -75,15 +75,15 @@ jobs:
     steps:
       - name:
         run: pecho $PATH
-      # - name: Unpack
-      #   run: yes | zstd -d hack_the_crisis_frontend.tar.zst
-      # - name: Replace docker images
-      #   run: |
-      #     /usr/bin/docker rmi hack_the_crisis_frontend --force
-      #     /usr/bin/docker load -i hack_the_crisis_frontend.tar
-      # - name: Run image
-      #   run: |
-      #     /usr/bin/docker run -p 4801:80 -d hack_the_crisis_frontend
+      - name: Unpack
+        run: yes | zstd -d hack_the_crisis_frontend.tar.zst
+      - name: Replace docker images
+        run: |
+          /usr/bin/docker rmi hack_the_crisis_frontend --force
+          /usr/bin/docker load -i hack_the_crisis_frontend.tar
+      - name: Run image
+        run: |
+          /usr/bin/docker run -p 4801:80 -d hack_the_crisis_frontend
       # - name: Cleanup
       #   run: |
       #     rm hack_the_crisis_frontend.*
