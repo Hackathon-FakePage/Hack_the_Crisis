@@ -4,86 +4,84 @@ on: push
 
 
 jobs:
-  # build-frontend:
-  #   # https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions#ubuntu-1804-lts
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Cache node modules
-  #     uses: actions/cache@v1
-  #     with:
-  #       path: ~/.npm
-  #       key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-  #       restore-keys: |
-  #         ${{ runner.os }}-node-
-  #   - name: Build docker image
-  #     run: |
-  #       docker-compose build frontend
-  #   - name: Save docker image
-  #     run: |
-  #       docker save hack_the_crisis_frontend -o hack_the_crisis_frontend.tar
-  #       zstd -7 hack_the_crisis_frontend.tar
-  #   - name: Push docker image
-  #     env:
-  #       remote_host: ${{ secrets.DEPLOY_HOST }}
-  #       remote_port: ${{ secrets.DEPLOY_PORT }}
-  #       remote_user: ${{ secrets.DEPLOY_USER }}
-  #       remote_key: ${{ secrets.DEPLOY_KEY }}
-  #       local_dir: "${{ github.workspace }}/hack_the_crisis_frontend.tar.zst"
-  #       remote_dir: "~/actions-runner/_work/Hack_the_Crisis/Hack_the_Crisis"
-  #     run: |
-  #       mkdir ~/.ssh
-  #       echo "$remote_key" > ~/.ssh/gh_actions_key
-  #       chmod 600 ~/.ssh/gh_actions_key
-  #       rsync -avzr --delete -e "ssh -p ${remote_port} -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" \
-  #         ${local_dir} ${remote_user}@${remote_host}:${remote_dir}
+  build-frontend:
+    # https://help.github.com/en/articles/software-in-virtual-environments-for-github-actions#ubuntu-1804-lts
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Build docker image
+      run: |
+        docker-compose build frontend
+    - name: Save docker image
+      run: |
+        docker save hack_the_crisis_frontend -o hack_the_crisis_frontend.tar
+        zstd -7 hack_the_crisis_frontend.tar
+    - name: Push docker image
+      env:
+        remote_host: ${{ secrets.DEPLOY_HOST }}
+        remote_port: ${{ secrets.DEPLOY_PORT }}
+        remote_user: ${{ secrets.DEPLOY_USER }}
+        remote_key: ${{ secrets.DEPLOY_KEY }}
+        local_dir: "${{ github.workspace }}/hack_the_crisis_frontend.tar.zst"
+        remote_dir: "~/actions-runner/_work/Hack_the_Crisis/Hack_the_Crisis"
+      run: |
+        mkdir ~/.ssh
+        echo "$remote_key" > ~/.ssh/gh_actions_key
+        chmod 600 ~/.ssh/gh_actions_key
+        rsync -avzr --delete -e "ssh -p ${remote_port} -i ~/.ssh/gh_actions_key -o StrictHostKeyChecking=no" \
+          ${local_dir} ${remote_user}@${remote_host}:${remote_dir}
 
 
-  # build-backend:
-  #   runs-on: ubuntu-18.04
-  #   strategy:
-  #     max-parallel: 4
-  #     matrix:
-  #       python-version: [3.7, 3.8]
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Set up Python ${{ matrix.python-version }}
-  #     uses: actions/setup-python@v1
-  #     with:
-  #       python-version: ${{ matrix.python-version }}
-  #   - name: Cache python requirements
-  #     uses: actions/cache@v1
-  #     with:
-  #       path: ~/.cache/pip
-  #       key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-  #       restore-keys: |
-  #         ${{ runner.os }}-pip-
-  #   - name: Install Dependencies
-  #     working-directory: ./backend
-  #     run: |
-  #       python -m pip install --upgrade pip
-  #       pip install -r requirements.txt
-  #   - name: Run Tests
-  #     working-directory: ./backend
-  #     run: |
-  #       python manage.py test
+  build-backend:
+    runs-on: ubuntu-18.04
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7, 3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Cache python requirements
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    - name: Install Dependencies
+      working-directory: ./backend
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      working-directory: ./backend
+      run: |
+        python manage.py test
 
 
   deploy-frontend:
-    # needs: build-frontend
+    needs: build-frontend
     runs-on: [self-hosted, linux]
     steps:
-      - name:
-        run: docker ps
-      # - name: Unpack
-      #   run: yes | zstd -d hack_the_crisis_frontend.tar.zst
-      # - name: Replace docker images
-      #   run: |
-      #     /usr/bin/docker rmi hack_the_crisis_frontend --force
-      #     /usr/bin/docker load -i hack_the_crisis_frontend.tar
-      # - name: Run image
-      #   run: |
-      #     /usr/bin/docker run -p 4801:80 -d hack_the_crisis_frontend
-      # - name: Cleanup
-      #   run: |
-      #     rm hack_the_crisis_frontend.*
+      - name: Unpack
+        run: yes | zstd -d hack_the_crisis_frontend.tar.zst
+      - name: Replace docker images
+        run: |
+          docker rmi hack_the_crisis_frontend --force
+          docker load -i hack_the_crisis_frontend.tar
+      - name: Run image
+        run: |
+          docker run -p 4801:80 -d hack_the_crisis_frontend
+      - name: Cleanup
+        run: |
+          rm hack_the_crisis_frontend.*
