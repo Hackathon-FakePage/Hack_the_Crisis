@@ -30,7 +30,7 @@ jobs:
         remote_user: ${{ secrets.DEPLOY_USER }}
         remote_key: ${{ secrets.DEPLOY_KEY }}
         local_dir: "${{ github.workspace }}/hack_the_crisis_frontend.tar.zst"
-        remote_dir: "~/"
+        remote_dir: "~/actions-runner/_work/Hack_the_Crisis/Hack_the_Crisis"
       run: |
         mkdir ~/.ssh
         echo "$remote_key" > ~/.ssh/gh_actions_key
