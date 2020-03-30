@@ -81,7 +81,7 @@ jobs:
           /usr/bin/docker load -i hack_the_crisis_frontend.tar
       - name: Run image
         run: |
-          /usr/bin/docker run -p 4801:80 hack_the_crisis_frontend -d
+          /usr/bin/docker run -p 4801:80 -d hack_the_crisis_frontend
       # - name: Cleanup
       #   run: |
       #     rm hack_the_crisis_frontend.*
