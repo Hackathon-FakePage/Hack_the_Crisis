@@ -17,6 +17,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Build docker image
+      env:
+        DOCKER_BUILDKIT: 1
       run: |
         docker-compose build frontend
     - name: Save docker image
@@ -51,6 +53,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
     - name: Build docker image
+      env:
+        DOCKER_BUILDKIT: 1
       run: |
         docker-compose build backend
     - name: Save docker image
