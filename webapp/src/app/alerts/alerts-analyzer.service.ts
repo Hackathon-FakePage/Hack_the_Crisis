@@ -6,25 +6,26 @@ import * as _ from 'lodash';
 import { WordCounterCalculatorService } from '../common/word-counter-calculator.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertsAnalyzerService {
   dummyWordCorrection = 'Word is informal';
   dummyPhraseCorrection = 'Phrase is informal';
 
-  constructor(private readonly dataStorageService: DataStorageService,
-              private readonly wordCounterCalculatorService: WordCounterCalculatorService) {
-  }
+  constructor(
+    private readonly dataStorageService: DataStorageService,
+    private readonly wordCounterCalculatorService: WordCounterCalculatorService
+  ) {}
 
   getAlerts(text: string, indices: GetAlertIndicesDTO.Root): Alert[] {
     const alerts: Alert[] = [];
     const words: string[] = [];
     const highlightedWords = this.getHighlightedWords(text, indices);
-    highlightedWords.forEach(word => {
+    highlightedWords.forEach((word) => {
       const safeWord = ' ' + word + ' ';
       alerts.push({
         alertWord: word,
-        correction: this.getCorrection(word)
+        correction: this.getCorrection(word),
       });
       words.push(safeWord);
     });
@@ -33,12 +34,15 @@ export class AlertsAnalyzerService {
     return alerts;
   }
 
-  private getHighlightedWords(text: string, indices: GetAlertIndicesDTO.Root): string[] {
+  private getHighlightedWords(
+    text: string,
+    indices: GetAlertIndicesDTO.Root
+  ): string[] {
     const output: string[] = [];
     const indicesGrouped: number[][] = this.getGroupedIndices(indices.indices);
     for (const indexGroup of indicesGrouped) {
       let flagWord = '';
-      indexGroup.forEach(charIndex => {
+      indexGroup.forEach((charIndex) => {
         flagWord += text.charAt(charIndex);
       });
       output.push(flagWord);
@@ -63,12 +67,18 @@ export class AlertsAnalyzerService {
   }
 
   private saveInformalWordsData(text: string, flagWords: string[]): void {
-    const overallNumberOfWords = this.wordCounterCalculatorService.getNumberOfWords(text);
+    const overallNumberOfWords = this.wordCounterCalculatorService.getNumberOfWords(
+      text
+    );
     this.dataStorageService.saveOverallNumberOfWords(overallNumberOfWords);
-    this.dataStorageService.saveNumberOfInformalWordsAndPhrases(flagWords.length);
+    this.dataStorageService.saveNumberOfInformalWordsAndPhrases(
+      flagWords.length
+    );
   }
 
   private getCorrection(word: string): string {
-    return word.split(' ').length > 1 ? this.dummyPhraseCorrection : this.dummyWordCorrection;
+    return word.split(' ').length > 1
+      ? this.dummyPhraseCorrection
+      : this.dummyWordCorrection;
   }
 }

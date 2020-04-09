@@ -14,6 +14,7 @@ import { NgxHighlightWordsModule } from 'ngx-highlight-words';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './modal/modal.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ModalComponent } from './modal/modal.component';
     AlertsComponent,
     AssistantComponent,
     WebpageSelectComponent,
-    ModalComponent
+    ModalComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,10 +34,10 @@ import { ModalComponent } from './modal/modal.component';
     FontAwesomeModule,
     NgxHighlightWordsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

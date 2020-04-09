@@ -1,28 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@import './assets/styles/colours.scss';
+@import "./assets/styles/colours.scss";
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-html, body
-{
-  background-color: $fakeBackground!important;
+html,
+body {
+  background-color: $fakeBackground !important;
   height: 100%;
   width: 100%;
 }
 
 .btn-primary {
-  background-color: $fakeBlueNew!important;
-  border: none!important;
+  background-color: $fakeBlueNew !important;
+  border: none !important;
 }
 
 .btn-outline-primary {
-  border-color: $fakeBlueNew!important;
-  color: $fakeBlueNew!important;
+  border-color: $fakeBlueNew !important;
+  color: $fakeBlueNew !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: $fakeBlueNew!important;
-  color: white!important;
+  background-color: $fakeBlueNew !important;
+  color: white !important;
 }

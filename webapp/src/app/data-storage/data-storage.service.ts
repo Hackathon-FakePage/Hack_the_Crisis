@@ -11,7 +11,7 @@ export interface ReliableInfo {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataStorageService {
   textToAnalyze = new Subject<string>();
@@ -21,11 +21,11 @@ export class DataStorageService {
   numberOfInformalWordsAndPhrases = new Subject<number>();
   overallNumberOfWords = new Subject<number>();
   wasReliableDataSubmitted = new Subject<boolean>();
+  errorMessage = new Subject<string>();
 
-  constructor(private readonly httpClient: HttpClient) {
-  }
+  constructor(private readonly httpClient: HttpClient) {}
 
-  saveText(text: string): void {
+  saveText(text: string | undefined): void {
     this.textToAnalyze.next(text);
   }
 
@@ -50,15 +50,22 @@ export class DataStorageService {
   }
 
   fetchIndices(text: string): Observable<GetAlertIndicesDTO.Root> {
-    return this.httpClient.post<GetAlertIndicesDTO.Root>(environment.apiUrl, {input: text}, {
-      headers: {
-      'Content-Type': 'application/json'
+    return this.httpClient.post<GetAlertIndicesDTO.Root>(
+      environment.apiUrl,
+      { input: text },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }
-    });
+    );
   }
 
-  saveIndices(indices: GetAlertIndicesDTO.Root) {
+  saveIndices(indices: GetAlertIndicesDTO.Root): void {
     this.indicesToHighlight.next(indices);
   }
-}
 
+  updateErrorMessage(errorMessage: string): void {
+    this.errorMessage.next(errorMessage);
+  }
+}

@@ -1,10 +1,12 @@
-@import '../../assets/styles/colours.scss';
+@import "../../assets/styles/colours.scss";
 
 .modal-dialog {
   .close:focus {
     outline: none;
   }
-  .modal-header, .modal-content {
+
+  .modal-header,
+  .modal-content {
     border: none;
   }
 
@@ -13,7 +15,7 @@
   }
 
   .form-check-input {
-    outline: none!important;
+    outline: none !important;
   }
 
   .form-check-label {

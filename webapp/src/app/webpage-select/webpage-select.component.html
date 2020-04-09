@@ -1,14 +1,25 @@
 <div class="container-fluid webpage-select-wrapper">
   <div class="row">
-    <img src="../../assets/icons/FakePage_logo_new.png" alt="">
+    <img src="../../assets/icons/FakePage_logo_new.png" alt=""/>
   </div>
   <div class="row">
     <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <input type="text" class="form-control" formControlName="text" placeholder="enter your text here">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="text"
+          placeholder="enter your text here"
+        />
       </div>
       <div class="btn-wrapper">
-        <button type="submit" [disabled]="textForm.invalid" class="btn btn-primary">Analyze</button>
+        <button
+          type="submit"
+          [disabled]="textForm.invalid"
+          class="btn btn-primary"
+        >
+          Analyze
+        </button>
       </div>
     </form>
   </div>

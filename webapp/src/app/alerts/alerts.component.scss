@@ -1,15 +1,16 @@
-@import '../../assets/styles/colours.scss';
+@import "../../assets/styles/colours.scss";
 
 .alerts-wrapper {
   .alert-row {
-    color: $fakeBackground!important;
+    color: $fakeBackground !important;
     display: inline-flex;
     padding: 13px;
     margin: 4px 0;
     background-color: rgba($fakeBlue, 0.85);
     z-index: 1000;
     border-radius: 5px;
-    box-shadow: 0 2px 43px -4px rgba(0,0,0,.19);
+    box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
+
     * {
       padding: 0 10px;
     }
@@ -36,7 +37,7 @@
   }
 
   fa-icon {
-    height: 5px!important;
+    height: 5px !important;
     color: $fakeBackground;
   }
 }
