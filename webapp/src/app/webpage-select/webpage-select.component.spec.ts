@@ -8,9 +8,8 @@ describe('WebpageSelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WebpageSelectComponent ]
-    })
-    .compileComponents();
+      declarations: [WebpageSelectComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

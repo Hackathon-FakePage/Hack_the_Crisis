@@ -1,29 +1,54 @@
 <div *ngIf="reliableData || formalityData" class="assistant-wrapper">
   <div *ngIf="formalityData" class="alert-assistant-wrapper">
-  <div class="alert-assistant-header">
-    <h5>Alert assistant</h5>
-  </div>
-  <div class="informal-words-counter">
-    <div>{{formalityData.informalCount}} / {{formalityData.overallCount}} of words/phrases are informal</div>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="formalityData.formalPercentage" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: formalityData.formalPercentage + '%'}"></div>
+    <div class="alert-assistant-header">
+      <h5>Alert assistant</h5>
     </div>
-    <div class="overall-status">
-      <fa-icon [icon]="formalStatus.faIcon"> size="xs</fa-icon><div>{{formalStatus.message}}</div>
+    <div class="informal-words-counter">
+      <div>
+        {{ formalityData.informalCount }} / {{ formalityData.overallCount }} of
+        words/phrases are informal
+      </div>
+      <div class="progress">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [attr.aria-valuenow]="formalityData.formalPercentage"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: formalityData.formalPercentage + '%' }"
+        ></div>
+      </div>
+      <div class="overall-status">
+        <fa-icon [icon]="formalStatus.faIcon"> size="xs</fa-icon>
+        <div>{{ formalStatus.message }}</div>
+      </div>
     </div>
   </div>
-  </div>
-  <div *ngIf="reliableData && reliableData.reliablePercentage !== undefined" class="reliable-info-status-wrapper">
+  <div
+    *ngIf="reliableData && reliableData.reliablePercentage !== undefined"
+    class="reliable-info-status-wrapper"
+  >
     <div class="reliable-assistant-header">
       <h5>Reliability assistant</h5>
     </div>
     <div class="reliable-info-counter">
-      <div>{{reliableData.reliableSum}} / {{reliableData.maxScore}} Reliability score</div>
+      <div>
+        {{ reliableData.reliableSum }} / {{ reliableData.maxScore }} Reliability
+        score
+      </div>
       <div class="progress">
-        <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="reliableData.reliablePercentage" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width: formalityData.formalPercentage + '%'}"></div>
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [attr.aria-valuenow]="reliableData.reliablePercentage"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: formalityData.formalPercentage + '%' }"
+        ></div>
       </div>
       <div class="overall-status">
-        <fa-icon [icon]="reliableStatus.faIcon" size="xs"></fa-icon><div>{{reliableStatus.message}}</div>
+        <fa-icon [icon]="reliableStatus.faIcon" size="xs"></fa-icon>
+        <div>{{ reliableStatus.message }}</div>
       </div>
     </div>
   </div>

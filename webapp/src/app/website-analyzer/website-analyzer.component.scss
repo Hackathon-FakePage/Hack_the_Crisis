@@ -1,5 +1,8 @@
-@import '../../assets/styles/colours.scss';
+@import "../../assets/styles/colours.scss";
 
-.analyzer-wrapper {
-  margin-bottom: 50px;
+.website-analyzer-wrapper {
+  padding: 25px;
+  border-radius: 5px;
+  background-color: white !important;
+  box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
 }

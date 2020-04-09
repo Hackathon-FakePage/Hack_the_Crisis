@@ -1,9 +1,11 @@
-@import '../../assets/styles/colours.scss';
+@import "../../assets/styles/colours.scss";
 .navbar {
+  justify-content: end;
 
   img {
     max-height: 55px;
   }
+
   .nav-link {
     color: $fakeGrey;
   }

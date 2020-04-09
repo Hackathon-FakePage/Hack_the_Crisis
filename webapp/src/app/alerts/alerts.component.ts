@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-alerts',
   templateUrl: './alerts.component.html',
-  styleUrls: ['./alerts.component.scss']
+  styleUrls: ['./alerts.component.scss'],
 })
 export class AlertsComponent implements OnInit, OnDestroy {
   faCircle = faCircle;
@@ -20,19 +20,21 @@ export class AlertsComponent implements OnInit, OnDestroy {
   alertText: string | undefined;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  constructor(private readonly alertsAnalyzerService: AlertsAnalyzerService,
-              private readonly dataStorageService: DataStorageService) { }
+  constructor(
+    private readonly alertsAnalyzerService: AlertsAnalyzerService,
+    private readonly dataStorageService: DataStorageService
+  ) {}
 
   ngOnInit(): void {
     this.alertIndices$ = this.dataStorageService.indicesToHighlight;
     this.textToAnalyze$ = this.dataStorageService.textToAnalyze;
-    this.alertIndices$.subscribe(data => console.log(data));
+    this.alertIndices$.subscribe((data) => console.log(data));
     combineLatest([this.alertIndices$, this.textToAnalyze$])
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(([indices, text]) => {
-      this.alertText = text;
-      this.populateAlerts(text, indices);
-    });
+        this.alertText = text;
+        this.populateAlerts(text, indices);
+      });
   }
 
   populateAlerts(textToAnalyze: string, indices: GetAlertIndices.Root): void {

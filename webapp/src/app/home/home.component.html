@@ -4,16 +4,19 @@
       <app-webpage-select></app-webpage-select>
     </div>
   </div>
-  <div [ngClass]="getClass()" class="analyzer-wrapper">
+  <div class="row error-message">
+    <app-error></app-error>
+  </div>
+  <div [ngClass]="analyzerClass" class="analyzer-wrapper">
     <div class="row analyzer-row">
-      <div class="col-xs-6 col-lg-8">
+      <div class="col-xs-12 col-md-12 col-lg-3">
+        <app-assistant></app-assistant>
+      </div>
+      <div class="col-xs-6 col-md-6 col-lg-6">
         <app-website-analyzer></app-website-analyzer>
       </div>
-      <div class="col-xs-3 col-lg-2">
+      <div class="col-xs-6 col-md-6 col-lg-3">
         <app-alerts></app-alerts>
-      </div>
-      <div class="col-xs-3 col-lg-2">
-        <app-assistant></app-assistant>
       </div>
     </div>
   </div>

@@ -1,11 +1,20 @@
 .home-wrapper {
   padding: 10px 4%;
 
+  .error-message {
+    justify-content: center;
+    color: red;
+  }
+
   .analyzer-wrapper {
     padding-top: 20px;
 
     .analyzer-row {
       padding-top: 30px;
+
+      & > div {
+        margin-bottom: 1.5rem;
+      }
     }
   }
 

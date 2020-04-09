@@ -1,16 +1,16 @@
-@import '../../assets/styles/colours.scss';
+@import "../../assets/styles/colours.scss";
 
 .assistant-wrapper {
   border-radius: 5px;
   width: 100%;
   background-color: white;
   padding: 25px;
-  box-shadow: 0 2px 43px -4px rgba(0,0,0,.19);
-
+  box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
 
   .overall-status {
     margin-top: 8px;
     display: inline-flex;
+
     fa-icon {
       padding-right: 5px;
     }
