@@ -7,7 +7,7 @@
   padding: 25px;
   box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
 
-  .overall-status {
+  .status-summary {
     margin-top: 8px;
     display: inline-flex;
 
@@ -23,12 +23,13 @@
   .progress {
     margin-top: 10px;
     background-color: rgba($fakeGrey, 0.3);
+
     .progress-bar {
       background-color: $fakeBlueNew;
     }
   }
 
-  .reliable-assistant-header {
-    margin-top: 10px;
+  .reliable-info-status-wrapper {
+    margin: .8rem auto;
   }
 }

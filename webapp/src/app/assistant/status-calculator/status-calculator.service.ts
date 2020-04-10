@@ -73,16 +73,17 @@ export class StatusCalculatorService {
     return undefined;
   }
 
-  calculateOverallStatus(reliableData: ReliableData, formalityData: FormalityData): OverallStatus {
-    return new OverallStatus(reliableData, formalityData);
+  calculateOverallStatus(formalityData: FormalityData, reliableData?: ReliableData): OverallStatus {
+    console.log(new OverallStatus(formalityData, reliableData).ratingPercentage);
+    return new OverallStatus(formalityData, reliableData);
   }
 }
 
 export class OverallStatus {
   ratingPercentage: number;
 
-  constructor(reliableData: ReliableData, formalityData: FormalityData) {
-    this.ratingPercentage = (reliableData.reliablePercentage + formalityData.formalPercentage) / 2;
+  constructor(formalityData: FormalityData, reliableData?: ReliableData) {
+    this.ratingPercentage = ((reliableData.reliablePercentage ? reliableData.reliablePercentage : 0) + formalityData.formalPercentage) / 2;
   }
 }
 
