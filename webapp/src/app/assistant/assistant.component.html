@@ -18,7 +18,7 @@
           [ngStyle]="{ width: formalityData.formalPercentage + '%' }"
         ></div>
       </div>
-      <div class="overall-status">
+      <div class="status-summary">
         <fa-icon [icon]="formalStatus.faIcon"> size="xs</fa-icon>
         <div>{{ formalStatus.message }}</div>
       </div>
@@ -43,12 +43,20 @@
           [attr.aria-valuenow]="reliableData.reliablePercentage"
           aria-valuemin="0"
           aria-valuemax="100"
-          [ngStyle]="{ width: formalityData.formalPercentage + '%' }"
+          [ngStyle]="{ width: reliableData.reliablePercentage + '%' }"
         ></div>
       </div>
-      <div class="overall-status">
+      <div class="status-summary">
         <fa-icon [icon]="reliableStatus.faIcon" size="xs"></fa-icon>
         <div>{{ reliableStatus.message }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="overall-assistant-wrapper">
+    <div class="overall-assistant-header">
+      <h5>Overall score</h5>
+      <div class="status-summary">
+        <ngb-rating [rate]="overallRating" [readonly]="isRatingLocked" [max]="5"></ngb-rating>
       </div>
     </div>
   </div>

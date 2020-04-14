@@ -7,7 +7,7 @@ import { combineLatest, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import {
   FormalityData,
-  GenericStatus,
+  GenericStatus, OverallStatus,
   ReliableData,
   StatusCalculatorService,
 } from './status-calculator/status-calculator.service';
@@ -25,7 +25,9 @@ export class AssistantComponent implements OnInit, OnDestroy {
   reliableInfo$: Observable<ReliableInfo>;
   reliableStatus: GenericStatus;
   formalStatus: GenericStatus;
+  overallStatus: OverallStatus;
   unsubscribe$: Subject<void> = new Subject<void>();
+  isRatingLocked = true;
 
   constructor(
     private readonly dataStorageService: DataStorageService,
@@ -51,7 +53,13 @@ export class AssistantComponent implements OnInit, OnDestroy {
         this.reliableStatus = this.calculator.calculateReliabilityStatus(
           reliableInfo
         );
+        const reliableData = reliableInfo ? new ReliableData(reliableInfo) : undefined;
+        this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, reliableData);
       });
+  }
+
+  get overallRating(): number {
+    return this.overallStatus.ratingPercentage / 100 * 5;
   }
 
   ngOnDestroy(): void {
