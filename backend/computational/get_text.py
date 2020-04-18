@@ -1,27 +1,23 @@
 import newspaper #pip3 install newspeper3k
 
-#input url - (string), ex.'https://edition.cnn.com/2020/04/17/health/us-coronavirus-friday/index.html'
-#output text - (string)
-def get_article_text(url):
-    article = newspaper.Article(url)
-    article.download()
-    article.parse()
-    return(article.text)
-
-
 # import nltk
 # nltk.download('punkt')
-#
-# def get_keywords(url):
-#     article = newspaper.Article(url)
-#     article.download()
-#     article.parse()
-#     article.nlp()
-#     return(article.keywords)
+
+
+#input url - (string), ex.'https://edition.cnn.com/2020/04/17/health/us-coronavirus-friday/index.html'
+#output text - (string)
+def gen_article(url, parse=True, nlp=False):
+    article = newspaper.Article(url)
+    article.download()
+    if(parse):
+        article.parse()
+    if(nlp):
+        article.nlp()
+    return article
 
 
 
-#INNE PRZYKŁADOWE ATRYBUTY article
+#PRZYKŁADOWE ATRYBUTY article
 
 # >>> article.html
 # '<!DOCTYPE HTML><html itemscope itemtype="http://...'
