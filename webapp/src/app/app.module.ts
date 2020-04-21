@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './modal/modal.component';
 import { ErrorComponent } from './error/error.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ErrorComponent } from './error/error.component';
     NgxHighlightWordsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

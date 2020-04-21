@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReliableInfo } from '../../data-storage/data-storage.service';
-import {
-  faCheckCircle,
-  faQuestionCircle,
-  faTimesCircle,
-  IconDefinition,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faQuestionCircle, faTimesCircle, IconDefinition, } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root',
@@ -47,11 +42,11 @@ export class StatusCalculatorService {
   ): GenericStatus | undefined {
     if (data !== undefined) {
       const formalFraction = data.formalPercentage;
-      if (formalFraction < 0.25) {
+      if (formalFraction < 25) {
         return this.mostlyFormal;
-      } else if (formalFraction < 0.5 && formalFraction >= 0.25) {
+      } else if (formalFraction < 50) {
         return this.moderateFormal;
-      } else if (formalFraction < 0.75 && formalFraction >= 0.5) {
+      } else if (formalFraction < 75) {
         return this.lowFormal;
       }
       return this.veryLowFormal;
