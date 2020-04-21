@@ -77,11 +77,25 @@ export class StatusCalculatorService {
     }
     return undefined;
   }
+
+  calculateOverallStatus(formalityData: FormalityData, reliableData?: ReliableData): OverallStatus {
+    return new OverallStatus(formalityData, reliableData);
+  }
+}
+
+export class OverallStatus {
+  ratingPercentage: number;
+
+  constructor(formalityData: FormalityData, reliableData?: ReliableData) {
+    this.ratingPercentage = ((reliableData.reliablePercentage ? reliableData.reliablePercentage : 0)
+      + (1 - formalityData.formalPercentage)) / 2;
+  }
 }
 
 export class GenericStatus {
   message: string;
   faIcon: IconDefinition;
+
   constructor(message: string, faIcon: IconDefinition) {
     this.message = message;
     this.faIcon = faIcon;
@@ -92,6 +106,7 @@ export class FormalityData {
   formalPercentage: number;
   informalCount: number;
   overallCount: number;
+
   constructor(informalCount: number, overallCount: number) {
     this.formalPercentage = (informalCount / overallCount) * 100;
     this.overallCount = overallCount;
@@ -103,6 +118,7 @@ export class ReliableData {
   reliablePercentage: number;
   reliableSum = 0;
   maxScore = 6;
+
   constructor(reliableInfo: ReliableInfo) {
     this.reliableSum =
       parseInt(reliableInfo.isEmotional, 10) +
