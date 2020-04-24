@@ -28,7 +28,6 @@ export class AlertsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.alertIndices$ = this.dataStorageService.indicesToHighlight;
     this.textToAnalyze$ = this.dataStorageService.textToAnalyze;
-    this.alertIndices$.subscribe((data) => console.log(data));
     combineLatest([this.alertIndices$, this.textToAnalyze$])
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(([indices, text]) => {

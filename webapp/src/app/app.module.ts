@@ -10,12 +10,12 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { AssistantComponent } from './assistant/assistant.component';
 import { WebpageSelectComponent } from './webpage-select/webpage-select.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgxHighlightWordsModule } from 'ngx-highlight-words';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './modal/modal.component';
 import { ErrorComponent } from './error/error.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { HighlightComponent } from './website-analyzer/highlight/highlight.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,12 +28,12 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     WebpageSelectComponent,
     ModalComponent,
     ErrorComponent,
+    HighlightComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgxHighlightWordsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgbRatingModule
