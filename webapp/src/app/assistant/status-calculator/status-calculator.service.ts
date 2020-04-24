@@ -83,7 +83,7 @@ export class OverallStatus {
 
   constructor(formalityData: FormalityData, reliableData?: ReliableData) {
     this.ratingPercentage = ((reliableData.reliablePercentage ? reliableData.reliablePercentage : 0)
-      + (1 - formalityData.formalPercentage)) / 2;
+      + (100 - formalityData.formalPercentage)) / 2;
   }
 }
 

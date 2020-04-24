@@ -6,6 +6,7 @@ import {
   Subject,
 } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 
 @Component({
   selector: 'app-website-analyzer',
@@ -14,21 +15,21 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class WebsiteAnalyzerComponent implements OnInit, OnDestroy {
   textToAnalyze: string | undefined;
-  wordsToHighlight: string[] = [];
-  wordsToHighlight$: Observable<string[]>;
+  indices: number[] | undefined;
+  indices$: Observable<GetAlertIndicesDTO.Root>;
   unsubscribe$: Subject<void> = new Subject<void>();
   textToAnalyze$: Observable<string>;
 
   constructor(private readonly dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
-    this.wordsToHighlight$ = this.dataStorageService.wordsToHighlight;
+    this.indices$ = this.dataStorageService.indicesToHighlight;
     this.textToAnalyze$ = this.dataStorageService.textToAnalyze;
-    combineLatest([this.wordsToHighlight$, this.textToAnalyze$])
+    combineLatest([this.indices$, this.textToAnalyze$])
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(([words, text]) => {
+      .subscribe(([root, text]) => {
         this.textToAnalyze = text;
-        this.wordsToHighlight = words;
+        this.indices = root.indices;
       });
   }
 
