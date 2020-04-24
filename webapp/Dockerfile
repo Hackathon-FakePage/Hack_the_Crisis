@@ -9,8 +9,8 @@ COPY ./yarn.lock /code
 RUN npm install
 
 COPY . /code
-
-RUN npm run build
+# temporary setup
+RUN npm run build:prod -- --prod
 
 
 # Build a small nginx image with static website
