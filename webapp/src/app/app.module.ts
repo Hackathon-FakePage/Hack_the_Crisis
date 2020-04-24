@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './modal/modal.component';
 import { ErrorComponent } from './error/error.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { HighlightComponent } from './website-analyzer/highlight/highlight.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     WebpageSelectComponent,
     ModalComponent,
     ErrorComponent,
+    HighlightComponent,
   ],
   imports: [
     BrowserModule,

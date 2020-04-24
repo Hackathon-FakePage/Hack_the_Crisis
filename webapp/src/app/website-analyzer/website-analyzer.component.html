@@ -1,11 +1,8 @@
 <div class="container-fluid website-analyzer-wrapper">
   <div class="row">
     <div class="col-md-12">
-      <ngx-highlight-words
-        [textToHighlight]="textToAnalyze"
-        [searchWords]="wordsToHighlight"
-      >
-      </ngx-highlight-words>
+      <app-highlight *ngIf="textToAnalyze && indices !== undefined" [text]="textToAnalyze"
+                     [indices]="indices"></app-highlight>
     </div>
   </div>
 </div>
