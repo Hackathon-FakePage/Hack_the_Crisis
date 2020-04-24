@@ -43,7 +43,6 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.open(ModalComponent);
     this.modalRef.result.then(
       () => {
-        this.dataStorageService.setReliableDataSubmitted(true);
       },
       (reason) => {
         if (reason !== 'Cancel') {

@@ -15,7 +15,9 @@ import { ModalComponent } from './modal/modal.component';
 import { ErrorComponent } from './error/error.component';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightComponent } from './website-analyzer/highlight/highlight.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SpinnerInterceptor } from './common/interceptor/spinner-interceptor';
 
 @NgModule({
   declarations: [
@@ -36,9 +38,14 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbRatingModule
+    NgbRatingModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: SpinnerInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {
