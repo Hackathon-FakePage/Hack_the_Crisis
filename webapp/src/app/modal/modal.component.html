@@ -9,7 +9,7 @@
       ></fa-icon>
     </div>
     <div class="modal-body">
-      <form [formGroup]="additionalInfo" (ngSubmit)="onSubmitForm()">
+      <form [formGroup]="additionalInfo">
         <h5>Was the article reviewed?</h5>
         <div class="form-group">
           <div class="form-check">
@@ -100,7 +100,7 @@
             >
               Cancel
             </button>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmitForm()">Submit</button>
           </div>
         </div>
       </form>
