@@ -13,7 +13,6 @@ export class HighlightComponent implements OnInit, OnChanges {
   spanStart = '<span class="highlight">';
   spanStartLength = this.spanStart.length;
   spanEnd = '</span>';
-  spanEndLength = this.spanEnd.length;
 
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
@@ -22,6 +21,7 @@ export class HighlightComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.transformText();
     this.renderer.setProperty(
       this.el.nativeElement,
       'innerHTML',
@@ -33,7 +33,6 @@ export class HighlightComponent implements OnInit, OnChanges {
     const sortedIndices = _.sortBy(this.indices);
     const groupedIndices = this.getGroupedIndices(sortedIndices).reverse();
     while (groupedIndices.length) {
-      console.log(groupedIndices);
       const indexGroup = groupedIndices[0];
       const indexStart = _.first(indexGroup);
       const indexEnd = _.last(indexGroup);
@@ -41,9 +40,6 @@ export class HighlightComponent implements OnInit, OnChanges {
       this.text = firstSpanInsert.slice(0, indexEnd + this.spanStartLength + 1) + this.spanEnd +
         firstSpanInsert.slice(indexEnd + this.spanStartLength + 1);
       groupedIndices.shift();
-      //   groupedIndices = groupedIndices.map((tempGroup: number[]) => {
-      //     return tempGroup.map((tempIndex: number) => (tempIndex + this.totalLength));
-      // });
     }
   }
 
