@@ -1,27 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import '../../assets/styles/colours';
+
 .webpage-select-wrapper {
   .row {
     justify-content: center;
-
-    h1 {
-      padding-bottom: 1rem;
+    .header {
+      width: 500px;
+      padding: 0 1rem;
     }
 
-    img {
-      max-height: 180px;
-      margin-top: 1.5rem;
-      margin-bottom: 5rem;
+    h1 {
+      font-weight: bolder;
+      //width: 90%;
+    }
+
+    p {
+      margin-top: 1rem;
+      //width: 70%;
+    }
+
+    .divider {
+      display: flex;
+      justify-content: center;
+      margin: .5rem 0;
+
+      &::before,
+      &::after {
+        display: inline-block;
+        content: "";
+        border-top: 0.15rem solid #e6e6e6;
+        width: 100%;
+        margin: 0 1rem;
+        transform: translateY(.8rem);
+      }
     }
 
     form {
       display: flex;
-
+      margin: 0;
+      flex-direction: column;
       .btn-wrapper {
-        padding-left: 5px;
+        margin-top: 1rem;
+        .btn {
+          border-radius: 0!important;
+          width: 100%;
+        }
+      }
+
+      .form-group {
+        margin-bottom: 0;
       }
 
       .form-control {
         min-width: 500px;
         max-width: 800px;
+        border-radius: 0;
+        border: none;
       }
 
       @media screen and (max-width: 570px) {

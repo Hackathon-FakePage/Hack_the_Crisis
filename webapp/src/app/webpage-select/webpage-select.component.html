@@ -1,6 +1,9 @@
 <div class="container-fluid webpage-select-wrapper">
   <div class="row">
-    <img src="../../assets/icons/FakePage_logo_new.png" alt=""/>
+    <div class="header">
+      <h1>Don't spread the fake news virus.</h1>
+      <p>Found a suspicious article that seems not reliable enough? Check your facts with us and get free from fake media sources.</p>
+    </div>
   </div>
   <div class="row">
     <form [formGroup]="textForm" (ngSubmit)="onSubmit()">
@@ -9,8 +12,12 @@
           type="text"
           class="form-control"
           formControlName="text"
-          placeholder="enter your text here"
+          placeholder="enter your URL"
         />
+      </div>
+      <div class="divider">or</div>
+      <div class="form-group">
+        <textarea class="form-control" rows="6" placeholder="enter your text"></textarea>
       </div>
       <div class="btn-wrapper">
         <button

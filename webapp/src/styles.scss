@@ -2,7 +2,7 @@
 @import "./assets/styles/colours.scss";
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 html,
@@ -11,18 +11,21 @@ body {
   height: 100%;
   width: 100%;
 }
-
+.btn {
+  border: none !important;
+  border-radius: 0 !important;
+}
 .btn-primary {
-  background-color: $fakeBlueNew !important;
+  background-color: $fakeBlue !important;
   border: none !important;
 }
 
 .btn-outline-primary {
-  border-color: $fakeBlueNew !important;
-  color: $fakeBlueNew !important;
+  border-color: $fakeBlue !important;
+  color: $fakeBlue !important;
 }
 
 .btn-outline-primary:hover {
-  background-color: $fakeBlueNew !important;
+  background-color: $fakeGrey !important;
   color: white !important;
 }
