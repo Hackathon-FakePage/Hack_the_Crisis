@@ -3,6 +3,7 @@ import os
 import json
 
 informal_words = []
+allowed_chars = [' ', '-', ',', '.', ';', ':', '?', '!', '/', '+', '=', '(', ')', '{', '}', '[', ']', '"', '*', '^', '$', '#', '@', '`', '\n']
 
 def find_all_indices(input_str, search_str):
     word_indices = []
@@ -12,9 +13,15 @@ def find_all_indices(input_str, search_str):
         i = input_str.find(search_str, index)
         if i == -1:
             return word_indices
-        previous_char = input_str[i-1]
-        if previous_char == " " or previous_char == "-" or previous_char == "," or previous_char == "." or previous_char == "\n":
-            word_indices.append(i)
+        elif i > 0:
+            preceeding_char = input_str[i-1]
+            following_char = input_str[i + len(search_str)]
+            if preceeding_char in allowed_chars and following_char in allowed_chars:
+                word_indices.append(i)
+        else: # case of first word in text
+            following_char = input_str[i + len(search_str)]
+            if following_char in allowed_chars:
+                word_indices.append(i)
         index = i + 1
     return word_indices
 
