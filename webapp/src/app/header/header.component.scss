@@ -1,14 +1,46 @@
 @import "../../assets/styles/colours.scss";
 .navbar {
-  margin: .5rem 10%;
-  padding: 0;
+  padding: .5rem 10%;
+  width: 100%;
+  justify-content: flex-end;
   float: right;
 
-  .btn-outline-primary {
+  &.dark-mode {
+    background-color: $fakeBlue !important;
+
+    .btn-outline-primary {
+      color: white !important;
+
+      &:hover {
+        background-color: white !important;
+        color: $fakeGrey !important;
+      }
+    }
+  }
+
+  &:not(.dark-mode) .btn-outline-primary {
     color: $fakeGrey !important;
 
     &:hover {
       color: white !important;
+    }
+  }
+
+  .col-6 {
+    padding: 0 8px;
+
+    .submit-wrapper {
+      display: flex;
+
+      .btn-primary:hover {
+        background-color: white !important;
+        color: $fakeBlue;
+      }
+    }
+
+    .form-control {
+      border: none;
+      border-radius: 0;
     }
   }
 }
