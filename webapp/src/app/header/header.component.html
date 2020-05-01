@@ -1,7 +1,15 @@
-<nav class="navbar navbar-light navbar-expand-md">
-  <div class="navbar-default">
+<nav class="navbar navbar-light" [ngClass]="backgroundColor">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div *ngIf="wasSubmitted" class="submit-wrapper"><input type="text" class="form-control" readonly [value]="text">
+      <button class="btn btn-primary" (click)="onClick()">
+        <fa-icon [icon]="faPencil"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <div class="col-3">
     <div class="nav navbar-nav navbar-right">
-      <a class="nav-link" routerLink="">Contact</a>
+      <button class="btn btn-outline-primary" routerLink="">Contact</button>
     </div>
   </div>
 </nav>

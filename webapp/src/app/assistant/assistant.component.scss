@@ -1,11 +1,11 @@
 @import "../../assets/styles/colours.scss";
 
 .assistant-wrapper {
-  border-radius: 5px;
+  //border-radius: 5px;
   width: 100%;
   background-color: white;
   padding: 25px;
-  box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
+  //box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
 
   .status-summary {
     margin-top: 8px;
@@ -17,7 +17,7 @@
   }
 
   h5 {
-    color: $fakeBlueNew;
+    color: $fakeBlue;
   }
 
   .progress {
@@ -25,7 +25,7 @@
     background-color: rgba($fakeGrey, 0.3);
 
     .progress-bar {
-      background-color: $fakeBlueNew;
+      background-color: $fakeBlue;
     }
   }
 

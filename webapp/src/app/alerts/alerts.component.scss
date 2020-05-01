@@ -6,10 +6,10 @@
     display: inline-flex;
     padding: 13px;
     margin: 4px 0;
-    background-color: rgba($fakeBlue, 0.85);
+    background-color: $fakeBlue;
     z-index: 1000;
-    border-radius: 5px;
-    box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
+    //border-radius: 5px;
+    //box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
 
     * {
       padding: 0 10px;
@@ -25,7 +25,7 @@
   }
 
   .number-of-alerts {
-    background-color: rgba($fakeBlue, 0.85);
+    background-color: $fakeBlue;
     color: white;
     height: 25px;
     width: 25px;

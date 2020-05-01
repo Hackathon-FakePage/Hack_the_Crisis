@@ -17,6 +17,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
   wasReliableDataSubmitted$: Subscription | undefined;
   fetchIndices$: Subscription | undefined;
   modalRef: NgbModalRef | undefined;
+  isHidden = false;
 
   constructor(
     private readonly dataStorageService: DataStorageService,
@@ -29,6 +30,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
       (data) => {
         if (data) {
           this.updateAnalyzedText();
+          this.hidePage();
         }
       }
     );
@@ -43,12 +45,12 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.open(ModalComponent);
     this.modalRef.result.then(
       () => {
-        this.dataStorageService.setReliableDataSubmitted(true);
       },
       (reason) => {
         if (reason !== 'Cancel') {
           this.dataStorageService.setReliableDataSubmitted(true);
           this.dataStorageService.reliableInfo.next(undefined);
+
         }
       }
     );
@@ -75,5 +77,9 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
     this.textForm = new FormGroup({
       text: new FormControl(null, [Validators.required]),
     });
+  }
+
+  private hidePage(): void {
+    this.isHidden = true;
   }
 }

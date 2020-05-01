@@ -1,0 +1,7 @@
+@import '../../../assets/styles/colours';
+
+::ng-deep .highlight {
+  color: white;
+  background-color: $fakeBlue;
+  padding: 1px 5px;
+}

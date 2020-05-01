@@ -1,8 +1,15 @@
 @import "../../assets/styles/colours.scss";
-
+::ng-deep .modal-content {
+  border: none;
+  border-radius: 0;
+}
 .modal-dialog {
   .close:focus {
     outline: none;
+  }
+
+  h5 {
+    margin-top: .5rem;
   }
 
   .modal-header,
@@ -14,18 +21,25 @@
     padding: 0 1.5rem;
   }
 
-  .form-check-input {
+  ::ng-deep .form-check-input {
     outline: none !important;
-  }
-
-  .form-check-label {
-    transform: translate(10px, 4.5px);
-    margin-bottom: 5px;
+    &:checked {
+      background-color: red;
+    }
   }
 
   .btn-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+
+    .btn {
+      border: none;
+      border-radius: 0;
+
+      & .btn-outline-primary:hover {
+        background-color: $fakeGrey;
+      }
+    }
   }
 
   fa-icon:hover {

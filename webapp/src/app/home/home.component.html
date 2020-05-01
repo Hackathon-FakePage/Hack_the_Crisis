@@ -1,7 +1,12 @@
 <div class="container-fluid home-wrapper">
-  <div class="row">
-    <div class="col-sm-12">
-      <app-webpage-select></app-webpage-select>
+  <div [ngbCollapse]="isHidden">
+    <div class="row" style="margin-top: 10rem;">
+      <div class="col-sm-6">
+        <app-webpage-select></app-webpage-select>
+      </div>
+      <div class="col-sm-6">
+        <img src="../../assets/icons/undraw_web_search_eetr.svg" alt="" class="img-web-search">
+      </div>
     </div>
   </div>
   <div class="row error-message">

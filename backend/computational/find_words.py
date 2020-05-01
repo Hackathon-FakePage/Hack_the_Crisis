@@ -3,6 +3,27 @@ import os
 import json
 
 informal_words = []
+allowed_chars = [' ', '-', ',', '.', ';', ':', '?', '!', '/', '+', '=', '(', ')', '{', '}', '[', ']', '"', '*', '^', '$', '#', '@', '`', '\n']
+
+def find_all_indices(input_str, search_str):
+    word_indices = []
+    length = len(input_str)
+    index = 0
+    while index < length:
+        i = input_str.find(search_str, index)
+        if i == -1:
+            return word_indices
+        elif i > 0:
+            preceeding_char = input_str[i-1]
+            following_char = input_str[i + len(search_str)]
+            if preceeding_char in allowed_chars and following_char in allowed_chars:
+                word_indices.append(i)
+        else: # case of first word in text
+            following_char = input_str[i + len(search_str)]
+            if following_char in allowed_chars:
+                word_indices.append(i)
+        index = i + 1
+    return word_indices
 
 def find_informal_words(text):
     text = text.lower()
@@ -10,13 +31,16 @@ def find_informal_words(text):
         load_informal_words_set()
     indices = []
     for word in informal_words:
-        index = text.find(word)
-        if index != -1:
-            print("word: ", word, " -> ", index)
-            for i in range(len(word)):
-                indices.append(index + i)
+        word_indices = []
+        word_indices = find_all_indices(text, word)
+        if word_indices != []:
+            print("word: ", word, " -> ", word_indices)
+            for word_index in word_indices:
+                for i in range(len(word)):
+                    indices.append(word_index + i)
 
     indices = list( dict.fromkeys(indices) )
+    indices.sort()
     print("Indices: ", indices)
     results = {"indices": indices}
     return results
@@ -32,3 +56,8 @@ def load_informal_words_set():
         informal_words.append(line)
     file.close()
 
+# Testing
+# test_file = open("test_text.txt", "r")
+# test_text = test_file.read()
+# find_informal_words(test_text)
+# test_file.close()

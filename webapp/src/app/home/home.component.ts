@@ -10,11 +10,18 @@ import * as _ from 'lodash';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   textToAnalyze$: Subscription;
+  dataSubmitted$: Subscription;
   shouldDisplayAnalyzingSection = false;
+  isHidden = false;
 
   constructor(private readonly dataStorageService: DataStorageService) {}
 
   ngOnInit(): void {
+    this.dataSubmitted$ = this.dataStorageService.wasReliableDataSubmitted.subscribe(
+      (data) => {
+        this.isHidden = data;
+      }
+    );
     this.textToAnalyze$ = this.dataStorageService.textToAnalyze.subscribe(
       (data) => {
         this.shouldDisplayAnalyzingSection = !_.isEmpty(data);
@@ -24,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.textToAnalyze$.unsubscribe();
+    this.dataSubmitted$.unsubscribe();
   }
 
   get analyzerClass(): string {
