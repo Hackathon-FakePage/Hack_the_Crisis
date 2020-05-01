@@ -61,8 +61,10 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
       .fetchIndices(this.textForm.value.text)
       .subscribe(
         (data) => {
+          console.log(data);
+          const indices = { indices: data.indices };
           this.dataStorageService.saveText(this.textForm.value.text);
-          this.dataStorageService.saveIndices(data);
+          this.dataStorageService.saveIndices(indices);
         },
         () => {
           this.dataStorageService.updateErrorMessage(

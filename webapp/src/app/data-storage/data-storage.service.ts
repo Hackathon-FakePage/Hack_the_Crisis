@@ -49,8 +49,8 @@ export class DataStorageService {
     this.wasReliableDataSubmitted.next(submitted);
   }
 
-  fetchIndices(text: string): Observable<GetAlertIndicesDTO.Root> {
-    return this.httpClient.post<GetAlertIndicesDTO.Root>(
+  fetchIndices(text: string): Observable<GetAlertIndicesDTO.Raw> {
+    return this.httpClient.post<GetAlertIndicesDTO.Raw>(
       environment.apiUrl,
       { input: text },
       {
