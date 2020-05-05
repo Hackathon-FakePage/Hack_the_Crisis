@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { Subscription } from 'rxjs';
+import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 
 @Component({
   selector: 'app-webpage-select',
@@ -61,8 +62,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
       .fetchIndices(this.textForm.value.text)
       .subscribe(
         (data) => {
-          console.log(data);
-          const indices = { indices: data.indices };
+          const indices: GetAlertIndicesDTO.Root = { indices: [...data.indices] };
           this.dataStorageService.saveText(this.textForm.value.text);
           this.dataStorageService.saveIndices(indices);
         },

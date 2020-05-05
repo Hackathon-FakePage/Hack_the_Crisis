@@ -12,7 +12,7 @@ class TextAnalyzer:
         self.informal_words = []
         self.text = text
         self.informal_words_counter = 0
-        self.indices = {} # Note, that here we will store the indices as json {"indices": []}.
+        self.indices = [] # Note, that here we will store the indices as array.
         self.formality_score = 0.0
 
     def analyze_text(self):
@@ -62,7 +62,7 @@ class TextAnalyzer:
 
         indices = list( dict.fromkeys(indices) )
         indices.sort()
-        self.indices = {"indices": indices}
+        self.indices = indices
 
     def load_informal_words_set(self):
         informal_words_filename = 'informal_words.csv'
