@@ -22,6 +22,7 @@ export class AssistantComponent implements OnInit, OnDestroy {
   reliableData: ReliableData | undefined;
   overallNumberOfWords$: Observable<number>;
   numberOfFlagWords$: Observable<number>;
+  formalityScore$: Observable<number>;
   reliableInfo$: Observable<ReliableInfo>;
   reliableStatus: GenericStatus;
   formalStatus: GenericStatus;
@@ -38,14 +39,16 @@ export class AssistantComponent implements OnInit, OnDestroy {
     this.numberOfFlagWords$ = this.dataStorageService.numberOfInformalWordsAndPhrases;
     this.reliableInfo$ = this.dataStorageService.reliableInfo;
     this.overallNumberOfWords$ = this.dataStorageService.overallNumberOfWords;
+    this.formalityScore$ = this.dataStorageService.formalityScore;
     combineLatest([
       this.numberOfFlagWords$,
       this.overallNumberOfWords$,
       this.reliableInfo$,
+      this.formalityScore$
     ])
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(([flagWords, overallNumber, reliableInfo]) => {
-        this.formalityData = new FormalityData(flagWords, overallNumber);
+      .subscribe(([flagWords, overallNumber, reliableInfo, formalityScore]) => {
+        this.formalityData = new FormalityData(formalityScore, flagWords, overallNumber);
         this.reliableData = new ReliableData(reliableInfo);
         this.formalStatus = this.calculator.calculateFormalStatus(
           this.formalityData

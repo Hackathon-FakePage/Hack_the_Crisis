@@ -65,6 +65,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
           const indices: GetAlertIndicesDTO.Root = { indices: [...data.indices] };
           this.dataStorageService.saveText(this.textForm.value.text);
           this.dataStorageService.saveIndices(indices);
+          this.dataStorageService.setFormalityScore(data.formalityScore);
         },
         () => {
           this.dataStorageService.updateErrorMessage(

@@ -22,6 +22,7 @@ export class DataStorageService {
   overallNumberOfWords = new Subject<number>();
   wasReliableDataSubmitted = new Subject<boolean>();
   errorMessage = new Subject<string>();
+  formalityScore = new Subject<number>();
 
   constructor(private readonly httpClient: HttpClient) {}
 
@@ -47,6 +48,10 @@ export class DataStorageService {
 
   setReliableDataSubmitted(submitted: boolean): void {
     this.wasReliableDataSubmitted.next(submitted);
+  }
+
+  setFormalityScore(score: number): void {
+    this.formalityScore.next(score);
   }
 
   fetchIndices(text: string): Observable<GetAlertIndicesDTO.Raw> {

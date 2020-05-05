@@ -102,8 +102,8 @@ export class FormalityData {
   informalCount: number;
   overallCount: number;
 
-  constructor(informalCount: number, overallCount: number) {
-    this.formalPercentage = (informalCount / overallCount) * 100;
+  constructor(formalScore: number, informalCount: number, overallCount: number) {
+    this.formalPercentage = formalScore;
     this.overallCount = overallCount;
     this.informalCount = informalCount;
   }
