@@ -23,9 +23,15 @@ class MainView(APIView):
 
     def post(self, request, *args, **kwargs):
         contents = request.data.get('input')
-        results = find_words.find_informal_words(contents)
+        text_analyzer = find_words.TextAnalyzer(contents)
+        text_analyzer.analyze_text()
+        indices = text_analyzer.get_indices()
+        formality_score = text_analyzer.get_formality_score()
 
-        return Response(results)
+        return Response({
+            'indices': indices,
+            'formalityScore': formality_score
+        })
 
     def options(self, request, *args, **kwargs):
         response = Response(status=200)
