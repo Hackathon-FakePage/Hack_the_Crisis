@@ -3,10 +3,13 @@ from bs4 import BeautifulSoup
 import re
 
 ##EXAMPLE OF USAGE
-##art = gen_article("https://www.foxnews.com/politics/trump-virtual-town-hall-america-together-returning-to-work-coronavirus-lincoln-memorial")
-##links = get_links(art.html)
-##external_links = get_external_links(art.source_url, links)
-##print(external_links, links)
+#art = gen_article("https://www.nature.com/articles/d41586-020-01315-7")
+#links = get_links(art.html)
+#external_links = get_external_links(art.source_url, links)
+#print(external_links, links)
+#get_scientific_sources(art.html)
+#print(get_scientific_sources(art.html))
+#print(art.text)
 
 
 #input url - (string), ex.'https://edition.cnn.com/2020/04/17/health/us-coronavirus-friday/index.html'
@@ -41,10 +44,26 @@ def get_external_links(source_url, links):
             external_links.append(link)
     return external_links
 
-#TODO: sources like 'Jacek Jakubowski, Rafa³ Sztencel: Wstêp do teorii prawdopodobieñstwa. Warszawa: Script, 2004, s. 59. ISBN 83-89716-01-1.'
-def get_scientific_sources(html):
-    scientific_sources = []
-    # DOI; ISBN; dostêp [data];  
+#TODO: sources like 'Jacek Jakubowski, Rafaï¿½ Sztencel: Wstï¿½p do teorii prawdopodobieï¿½stwa. Warszawa: Script, 2004, s. 59. ISBN 83-89716-01-1.'
+def get_scientific_sources(html_page):
+    soup = BeautifulSoup(html_page)
+
+    res_words = ["references","resource", "referencje", "ÅºrÃ³dÅ‚a", "bibliografia"]
+    stop_words = ["\n\n\n\n"]
+
+    scientific_sources = "nie znaleziono"
+    for word in res_words:
+        i = soup.text.lower().find(word)
+        if not (i == -1):
+            for stop in stop_words:
+                j = soup.text.lower().find(stop,i)
+                if not (j == -1):
+                    break
+            scientific_sources = soup.text[i:j]
+            print(scientific_sources)
+            break
     return scientific_sources
+
+
 
 
