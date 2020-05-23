@@ -48,6 +48,7 @@ export class AssistantComponent implements OnInit, OnDestroy {
     ])
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(([flagWords, overallNumber, reliableInfo, formalityScore]) => {
+        console.log('formality score: ' + formalityScore);
         this.formalityData = new FormalityData(formalityScore, flagWords, overallNumber);
         this.reliableData = new ReliableData(reliableInfo);
         this.formalStatus = this.calculator.calculateFormalStatus(

@@ -6,10 +6,6 @@
     justify-content: center;
     width: 100%;
 
-    .header {
-      padding: 0 1rem;
-    }
-
     h1 {
       font-weight: bolder;
     }
@@ -17,6 +13,10 @@
     p {
       margin-top: 1rem;
       font-size: 1.15rem;
+    }
+
+    .form-label {
+      font-weight: bold;
     }
 
     .divider {

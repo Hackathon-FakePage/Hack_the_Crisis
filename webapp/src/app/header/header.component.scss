@@ -5,6 +5,14 @@
   justify-content: flex-end;
   float: right;
 
+  img {
+    height: 60px;
+  }
+
+  .add-margin {
+    margin-left: calc(33.3% - 15px);
+  }
+
   &.dark-mode {
     background-color: $fakeBlue !important;
 

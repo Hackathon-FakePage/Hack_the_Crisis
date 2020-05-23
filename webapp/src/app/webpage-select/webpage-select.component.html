@@ -17,7 +17,8 @@
       <!--        />-->
       <!--      </div>-->
       <!--      <div class="divider">or</div>-->
-      <textarea class="form-control" rows="6" formControlName="text" placeholder="enter your text"></textarea>
+      <label class="form-label" for="textToAnalyze">Enter your text</label>
+      <textarea id="textToAnalyze" class="form-control" rows="6" formControlName="text"></textarea>
       <div class="btn-wrapper">
         <button
           type="submit"
@@ -28,5 +29,8 @@
         </button>
       </div>
     </form>
+  </div>
+  <div class="row error-message">
+    <app-error></app-error>
   </div>
 </div>
