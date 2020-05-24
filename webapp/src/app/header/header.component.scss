@@ -49,6 +49,10 @@
     .form-control {
       border: none;
       border-radius: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

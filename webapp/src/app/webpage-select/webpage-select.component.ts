@@ -23,6 +23,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
+    this.dataStorageService.formalityScore.subscribe(data => console.log(data));
   }
 
   ngOnDestroy(): void {
@@ -38,11 +39,11 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
       .fetchIndices(this.textForm.value.text)
       .subscribe(
         (data) => {
+          console.log(data.formalityScore);
           const indices: GetAlertIndicesDTO.Root = { indices: [...data.indices] };
           this.dataStorageService.setReliableDataSubmitted(true);
           this.dataStorageService.saveText(this.textForm.value.text);
           this.dataStorageService.saveIndices(indices);
-          this.dataStorageService.setFormalityScore(data.formalityScore);
           this.dataStorageService.updateErrorMessage('');
           this.hidePage();
         },

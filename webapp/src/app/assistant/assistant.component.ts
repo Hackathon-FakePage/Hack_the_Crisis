@@ -37,28 +37,28 @@ export class AssistantComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.numberOfFlagWords$ = this.dataStorageService.numberOfInformalWordsAndPhrases;
-    this.reliableInfo$ = this.dataStorageService.reliableInfo;
     this.overallNumberOfWords$ = this.dataStorageService.overallNumberOfWords;
     this.formalityScore$ = this.dataStorageService.formalityScore;
     combineLatest([
       this.numberOfFlagWords$,
       this.overallNumberOfWords$,
-      this.reliableInfo$,
       this.formalityScore$
     ])
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(([flagWords, overallNumber, reliableInfo, formalityScore]) => {
-        console.log('formality score: ' + formalityScore);
+      .subscribe(([flagWords, overallNumber, formalityScore]) => {
+        console.log('formality score: ');
+        console.log(formalityScore);
         this.formalityData = new FormalityData(formalityScore, flagWords, overallNumber);
-        this.reliableData = new ReliableData(reliableInfo);
+        // this.reliableData = new ReliableData(reliableInfo);
         this.formalStatus = this.calculator.calculateFormalStatus(
           this.formalityData
         );
-        this.reliableStatus = this.calculator.calculateReliabilityStatus(
-          reliableInfo
-        );
-        const reliableData = reliableInfo ? new ReliableData(reliableInfo) : undefined;
-        this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, reliableData);
+        // this.reliableStatus = this.calculator.calculateReliabilityStatus(
+        //   reliableInfo
+        // );
+        // const reliableData = reliableInfo ? new ReliableData(reliableInfo) : undefined;
+        // this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, reliableData);
+        this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, undefined);
       });
   }
 

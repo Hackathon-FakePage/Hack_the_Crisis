@@ -3,6 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { tap } from 'rxjs/operators';
 
 export interface ReliableInfo {
   isReviewed: string;
@@ -63,7 +64,10 @@ export class DataStorageService {
           'Content-Type': 'application/json',
         },
       }
-    );
+    ).pipe(tap((data) => {
+      this.setFormalityScore(data.formalityScore);
+      return data;
+    }));
   }
 
   saveIndices(indices: GetAlertIndicesDTO.Root): void {
