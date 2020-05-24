@@ -57,7 +57,7 @@ export class AssistantComponent implements OnInit, OnDestroy {
         );
         this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData);
       });
-      this.reliableInfo$.pipe(takeUntil(this.unsubscribe$)).subscribe((reliableInfo) => {
+    this.reliableInfo$.pipe(takeUntil(this.unsubscribe$)).subscribe((reliableInfo) => {
         this.reliableData = new ReliableData(reliableInfo);
         this.reliableStatus = this.calculator.calculateReliabilityStatus(
           reliableInfo

@@ -77,7 +77,7 @@ export class StatusCalculatorService {
     if (reliableData) {
       return new OverallStatus(formalityData, reliableData);
     }
-      return new OverallStatus(formalityData);
+    return new OverallStatus(formalityData);
   }
 }
 
