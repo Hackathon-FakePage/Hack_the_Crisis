@@ -3,7 +3,6 @@ import { DataStorageService } from '../data-storage/data-storage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-webpage-select',
@@ -45,6 +44,7 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
           this.dataStorageService.saveText(this.textForm.value.text);
           this.dataStorageService.saveIndices(indices);
           this.dataStorageService.updateErrorMessage('');
+          // this.dataStorageService.saveReliableInfo();
           this.hidePage();
         },
         () => {

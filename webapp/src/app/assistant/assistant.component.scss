@@ -1,11 +1,9 @@
 @import "../../assets/styles/colours.scss";
 
 .assistant-wrapper {
-  //border-radius: 5px;
   width: 100%;
   background-color: white;
   padding: 25px;
-  //box-shadow: 0 2px 43px -4px rgba(0, 0, 0, 0.19);
 
   .status-summary {
     margin-top: 8px;
@@ -32,4 +30,14 @@
   .reliable-info-status-wrapper {
     margin: .8rem auto;
   }
+
+  .overall-assistant-wrapper {
+    margin-top: 1rem;
+  }
+  .btn-primary {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 1rem;
+    }
 }

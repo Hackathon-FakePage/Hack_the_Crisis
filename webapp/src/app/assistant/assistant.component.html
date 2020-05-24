@@ -25,7 +25,7 @@
     </div>
   </div>
   <div
-    *ngIf="reliableData && reliableData.reliablePercentage !== undefined"
+    *ngIf="reliableData && reliableData.reliablePercentage"
     class="reliable-info-status-wrapper"
   >
     <div class="reliable-assistant-header">
@@ -51,6 +51,9 @@
         <div>{{ reliableStatus.message }}</div>
       </div>
     </div>
+  </div>
+  <div class="add-reliablity" *ngIf="!reliableData">
+    <button class="btn btn-primary" (click)="addReliability()">Get reliability info</button>
   </div>
   <div class="overall-assistant-wrapper">
     <div class="overall-assistant-header">

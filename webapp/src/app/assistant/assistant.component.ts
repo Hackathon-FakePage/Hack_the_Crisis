@@ -11,6 +11,8 @@ import {
   ReliableData,
   StatusCalculatorService,
 } from './status-calculator/status-calculator.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-assistant',
@@ -29,37 +31,44 @@ export class AssistantComponent implements OnInit, OnDestroy {
   overallStatus: OverallStatus;
   unsubscribe$: Subject<void> = new Subject<void>();
   isRatingLocked = true;
+  modalRef: NgbModalRef | undefined;
 
   constructor(
     private readonly dataStorageService: DataStorageService,
-    private readonly calculator: StatusCalculatorService
+    private readonly calculator: StatusCalculatorService,
+    private readonly modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
     this.numberOfFlagWords$ = this.dataStorageService.numberOfInformalWordsAndPhrases;
     this.overallNumberOfWords$ = this.dataStorageService.overallNumberOfWords;
     this.formalityScore$ = this.dataStorageService.formalityScore;
+    this.reliableInfo$ = this.dataStorageService.reliableInfo;
     combineLatest([
       this.numberOfFlagWords$,
       this.overallNumberOfWords$,
-      this.formalityScore$
+      this.formalityScore$,
     ])
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(([flagWords, overallNumber, formalityScore]) => {
-        console.log('formality score: ');
-        console.log(formalityScore);
         this.formalityData = new FormalityData(formalityScore, flagWords, overallNumber);
-        // this.reliableData = new ReliableData(reliableInfo);
         this.formalStatus = this.calculator.calculateFormalStatus(
           this.formalityData
         );
-        // this.reliableStatus = this.calculator.calculateReliabilityStatus(
-        //   reliableInfo
-        // );
-        // const reliableData = reliableInfo ? new ReliableData(reliableInfo) : undefined;
-        // this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, reliableData);
-        this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, undefined);
+        this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData);
       });
+      this.reliableInfo$.pipe(takeUntil(this.unsubscribe$)).subscribe((reliableInfo) => {
+        this.reliableData = new ReliableData(reliableInfo);
+        this.reliableStatus = this.calculator.calculateReliabilityStatus(
+          reliableInfo
+        );
+        const reliableData = reliableInfo ? new ReliableData(reliableInfo) : undefined;
+        this.overallStatus = this.calculator.calculateOverallStatus(this.formalityData, reliableData);
+      });
+  }
+
+  addReliability(): void {
+    this.modalRef = this.modalService.open(ModalComponent);
   }
 
   get overallRating(): number {

@@ -1,11 +1,13 @@
 <nav class="navbar navbar-light" [ngClass]="backgroundColor">
   <div class="col-3">
-    <div *ngIf="wasSubmitted; else defaultLogo">
-      <img src="../../assets/icons/fake_page white.svg" alt="FakePage">
-    </div>
+    <a href="">
+      <div *ngIf="wasSubmitted; else defaultLogo">
+        <img src="../../assets/icons/fake_page white.svg" alt="FakePage">
+      </div>
       <ng-template #defaultLogo>
         <img class="add-margin" src="../../assets/icons/fake_page.svg" alt="FakePage">
       </ng-template>
+    </a>
   </div>
   <div class="col-6">
     <div *ngIf="wasSubmitted" class="submit-wrapper"><input type="text" class="form-control" readonly [value]="text" (click)="onClick()">
@@ -15,6 +17,7 @@
     </div>
   </div>
   <div class="col-3">
+    <!-- Add back once team page is introduced -->
     <!-- <div class="nav navbar-nav navbar-right">
       <button class="btn btn-outline-primary" routerLink="">Contact</button>
     </div> -->
