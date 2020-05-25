@@ -17,10 +17,8 @@ export class ErrorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.message$ = this.dataStorageService.errorMessage.subscribe(
       (message) => {
-        if (!_.isEmpty(message)) {
           this.message = message;
           this.closeErrorAfterTimeout();
-        }
       }
     );
   }
@@ -32,6 +30,6 @@ export class ErrorComponent implements OnInit, OnDestroy {
   private closeErrorAfterTimeout(): void {
     setTimeout(() => {
       this.dataStorageService.updateErrorMessage('');
-    }, 20000);
+    }, 2000);
   }
 }

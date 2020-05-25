@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 235 131" style="enable-background:new 0 0 235 131;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#4F4F4F;stroke-width:9;stroke-miterlimit:10;}
+	.st1{fill:#6C63FF;}
+	.st2{font-family:'Lato';}
+	.st3{font-size:48px;}
+	.st4{fill:#454545;}
+	.st5{fill:#4F4F4F;stroke:#4F4F4F;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M113.5,87.5c-9.4,18.9-28.9,32-51.5,32C30.2,119.5,4.5,93.8,4.5,62S30.2,4.5,62,4.5c21.8,0,40.8,12.2,50.6,30.1
+	"/>
+<line class="st0" x1="99" y1="106" x2="119.5" y2="126.5"/>
+<g>
+	<text transform="matrix(1 0 0 1 25 76.6665)" class="st1 st2 st3">Fake</text>
+</g>
+<text transform="matrix(1 0 0 1 130.5806 76.5186)" class="st4 st2 st3">Page</text>
+<circle class="st5" cx="119.5" cy="126.5" r="4"/>
+</svg>

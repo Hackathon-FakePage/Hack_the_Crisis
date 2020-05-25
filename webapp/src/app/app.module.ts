@@ -18,6 +18,7 @@ import { HighlightComponent } from './website-analyzer/highlight/highlight.compo
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerInterceptor } from './common/interceptor/spinner-interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SpinnerInterceptor } from './common/interceptor/spinner-interceptor';
     HttpClientModule,
     NgbRatingModule,
     NgxSpinnerModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

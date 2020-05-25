@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataStorageService } from '../data-storage/data-storage.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../modal/modal.component';
 import { Subscription } from 'rxjs';
 import * as GetAlertIndicesDTO from '../common/dtos/get-alert-indices.dto';
 
@@ -15,46 +13,24 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
   private static readonly ERROR_MESSAGE =
     'There was a problem while analyzing the text. Please try again.';
   textForm: FormGroup | undefined;
-  wasReliableDataSubmitted$: Subscription | undefined;
   fetchIndices$: Subscription | undefined;
-  modalRef: NgbModalRef | undefined;
   isHidden = false;
 
   constructor(
-    private readonly dataStorageService: DataStorageService,
-    private readonly modalService: NgbModal
+    private readonly dataStorageService: DataStorageService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.wasReliableDataSubmitted$ = this.dataStorageService.wasReliableDataSubmitted.subscribe(
-      (data) => {
-        if (data) {
-          this.updateAnalyzedText();
-          this.hidePage();
-        }
-      }
-    );
+    this.dataStorageService.formalityScore.subscribe(data => console.log(data));
   }
 
   ngOnDestroy(): void {
-    this.wasReliableDataSubmitted$.unsubscribe();
     this.fetchIndices$.unsubscribe();
   }
 
   onSubmit(): void {
-    this.modalRef = this.modalService.open(ModalComponent);
-    this.modalRef.result.then(
-      () => {
-      },
-      (reason) => {
-        if (reason !== 'Cancel') {
-          this.dataStorageService.setReliableDataSubmitted(true);
-          this.dataStorageService.reliableInfo.next(undefined);
-
-        }
-      }
-    );
+    this.updateAnalyzedText();
   }
 
   private updateAnalyzedText() {
@@ -62,16 +38,19 @@ export class WebpageSelectComponent implements OnInit, OnDestroy {
       .fetchIndices(this.textForm.value.text)
       .subscribe(
         (data) => {
+          console.log(data.formalityScore);
           const indices: GetAlertIndicesDTO.Root = { indices: [...data.indices] };
+          this.dataStorageService.setReliableDataSubmitted(true);
           this.dataStorageService.saveText(this.textForm.value.text);
           this.dataStorageService.saveIndices(indices);
-          this.dataStorageService.setFormalityScore(data.formalityScore);
+          this.dataStorageService.updateErrorMessage('');
+          // this.dataStorageService.saveReliableInfo();
+          this.hidePage();
         },
         () => {
           this.dataStorageService.updateErrorMessage(
             WebpageSelectComponent.ERROR_MESSAGE
           );
-          this.dataStorageService.saveText(undefined);
         }
       );
   }
