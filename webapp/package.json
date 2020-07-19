@@ -29,7 +29,7 @@
     "@types/lodash": "^4.14.149",
     "bootstrap": "4",
     "jquery": "3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ngx-spinner": "^9.0.2",
     "popper.js": "1.16",
     "rxjs": "~6.5.4",
